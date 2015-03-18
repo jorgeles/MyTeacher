@@ -1,5 +1,6 @@
 package com.example.jmrosell.myteacher;
 
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 
@@ -38,7 +39,9 @@ public class JuegoListActivity extends FragmentActivity
         Comprueba si estamos en una tablet en horizontal o no. Si lo estamos entra y pone
         la variable mTwoPane a true
          */
-        if (findViewById(R.id.juego_detail_container) != null) {
+
+        if ((getResources().getConfiguration().screenLayout & Configuration.SCREENLAYOUT_SIZE_MASK) ==Configuration.SCREENLAYOUT_SIZE_XLARGE
+                &&getResources().getConfiguration().orientation ==Configuration.ORIENTATION_LANDSCAPE) {
             // The detail container view will be present only in the
             // large-screen layouts (res/values-large and
             // res/values-sw600dp). If this view is present, then the
@@ -47,11 +50,11 @@ public class JuegoListActivity extends FragmentActivity
 
             // In two-pane mode, list items should be given the
             // 'activated' state when touched.
-            ((JuegoListFragment) getSupportFragmentManager()
+           ((JuegoListFragment) getSupportFragmentManager()
                     .findFragmentById(R.id.juego_list))
                     .setActivateOnItemClick(true);
-        }
 
+        }
         // TODO: If exposing deep links into your app, handle intents here.
     }
 

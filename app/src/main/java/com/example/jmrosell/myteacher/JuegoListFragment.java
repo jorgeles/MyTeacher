@@ -7,8 +7,6 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
-
-import com.example.jmrosell.myteacher.dummy.DummyContent;
 import com.example.jmrosell.myteacher.juego.Juego;
 import com.example.jmrosell.myteacher.juego.JuegoContent;
 
@@ -102,7 +100,6 @@ public class JuegoListFragment extends ListFragment {
             setActivatedPosition(savedInstanceState.getInt(STATE_ACTIVATED_POSITION));
         }
     }
-
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
