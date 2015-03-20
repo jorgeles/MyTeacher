@@ -38,6 +38,10 @@
             android:name=".NavigationActivity"
             android:label="@string/title_activity_navigation" >
         </activity>
+        <activity
+            android:name=".Reproductor_Asociacion"
+            android:label="@string/title_activity_reproductor__asociacion" >
+        </activity>
     </application>
 
 </manifest>

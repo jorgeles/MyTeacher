@@ -200,4 +200,9 @@ public class NavigationActivity extends ActionBarActivity
         }
     }
 
+    public void reproducir (View view){
+        Intent actividad = new Intent(this,Reproductor_Asociacion.class);
+        startActivity(actividad);
+    }
+
 }

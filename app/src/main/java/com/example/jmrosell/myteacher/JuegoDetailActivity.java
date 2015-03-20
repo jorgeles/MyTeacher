@@ -61,9 +61,9 @@ public class JuegoDetailActivity extends ActionBarActivity {
             // http://developer.android.com/design/patterns/navigation.html#up-vs-back
             //
             NavUtils.navigateUpTo(this, new Intent(this, NavigationActivity.class));
-            //jodfjeowfjewfoej
             return true;
         }
         return super.onOptionsItemSelected(item);
     }
+
 }
