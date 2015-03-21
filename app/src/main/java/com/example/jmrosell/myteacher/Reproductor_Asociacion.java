@@ -13,7 +13,6 @@ import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.example.jmrosell.myteacher.juego.MyDragListener;
 import com.example.jmrosell.myteacher.juego.Posicion_Pantalla;
 
 import java.util.Hashtable;
@@ -41,14 +40,12 @@ public class Reproductor_Asociacion extends ActionBarActivity implements View.On
         marco = (ViewGroup) findViewById(R.id.marco);
         imagen = new TextView(this);
         imagen.setGravity(Gravity.CENTER);
-        MyDragListener prueba = new MyDragListener();
         imagen.setText("Probandooooo");
         posicion = new Posicion_Pantalla();
         posicion.x = 20;
         posicion.y = (150) + 10;
         posiciones_elementos.put(1, posicion);
         imagen.setOnTouchListener(this);
-        imagen.setOnDragListener(prueba);
         imagen.setX(20);
         imagen.setY((150) + 10);
         imagen.setWidth(120);
