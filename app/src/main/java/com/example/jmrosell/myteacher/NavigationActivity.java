@@ -6,6 +6,7 @@ import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
@@ -53,6 +54,7 @@ public class NavigationActivity extends ActionBarActivity
 
         mNavigationDrawerFragment = (NavigationDrawerFragment)
                 getSupportFragmentManager().findFragmentById(R.id.navigation_drawer);
+
         mTitle = getTitle();
 
         // Set up the drawer.
@@ -68,8 +70,11 @@ public class NavigationActivity extends ActionBarActivity
         switch (position) {
             case 0:
                 //Home
-                FragmentListDetail game = new FragmentListDetail();
-                fragmentManager.beginTransaction().replace(R.id.container,game).commit();
+                /*FragmentListDetail game = new FragmentListDetail();
+                fragmentManager.beginTransaction().replace(R.id.container,game).commit();*/
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.add(R.id.autor_fragment_container, new AutoresFragment());
+                fragmentTransaction.commit();
                 /*Intent intent = new Intent(this, JuegoListActivity.class);
                 startActivity(intent);*/
                 break;
