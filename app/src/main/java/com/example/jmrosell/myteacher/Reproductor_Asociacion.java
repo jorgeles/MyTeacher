@@ -1,6 +1,7 @@
 package com.example.jmrosell.myteacher;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
 import android.support.v7.app.ActionBarActivity;
@@ -39,8 +40,11 @@ public class Reproductor_Asociacion extends ActionBarActivity implements View.On
 
         marco = (ViewGroup) findViewById(R.id.marco);
         imagen = new TextView(this);
-        imagen.setGravity(Gravity.CENTER);
-        imagen.setText("Probandooooo");
+        //imagen.setGravity(Gravity.CENTER);
+        //imagen.setText("Probandooooo");
+        //imagen.setBackgroundColor(Color.RED);
+        imagen.setBackgroundDrawable(getResources().getDrawable(R.drawable.rectangulo));
+
         posicion = new Posicion_Pantalla();
         posicion.x = 20;
         posicion.y = (150) + 10;
