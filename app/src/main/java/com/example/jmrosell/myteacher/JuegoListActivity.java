@@ -1,5 +1,6 @@
 package com.example.jmrosell.myteacher;
 
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
@@ -64,6 +65,28 @@ public class JuegoListActivity extends FragmentActivity
      */
     @Override
     public void onItemSelected(String id) {
-        /*Esta función esta override en NavigationActivity*/
+        /*
+        Si estamos en modo dos pantallas activa el fragment utilizando getSupportFragment....
+        sino llama a la actividad del fragmentdetail
+         */
+        if (mTwoPane) {
+            // In two-pane mode, show the detail view in this activity by
+            // adding or replacing the detail fragment using a
+            // fragment transaction.
+            Bundle arguments = new Bundle();
+            arguments.putString(JuegoDetailFragment.ARG_ITEM_ID, id);
+            JuegoDetailFragment fragment = new JuegoDetailFragment();
+            fragment.setArguments(arguments);
+            getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.juego_detail_container, fragment)
+                    .commit();
+
+        } else {
+            // In single-pane mode, simply start the detail activity
+            // for the selected item ID.
+            Intent detailIntent = new Intent(this, JuegoDetailActivity.class);
+            detailIntent.putExtra(JuegoDetailFragment.ARG_ITEM_ID, id);
+            startActivity(detailIntent);
+        }
     }
 }

@@ -72,8 +72,9 @@ public class NavigationActivity extends ActionBarActivity
                 //Home
                 /*FragmentListDetail game = new FragmentListDetail();
                 fragmentManager.beginTransaction().replace(R.id.container,game).commit();*/
+                FragmentListDetail game = new FragmentListDetail();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.add(R.id.autor_fragment_container, new AutoresFragment());
+                fragmentTransaction.add(R.id.container, game);
                 fragmentTransaction.commit();
                 /*Intent intent = new Intent(this, JuegoListActivity.class);
                 startActivity(intent);*/
