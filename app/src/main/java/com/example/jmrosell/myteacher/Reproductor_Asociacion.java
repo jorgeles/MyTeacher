@@ -14,7 +14,7 @@ import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.example.jmrosell.myteacher.juego.Posicion_Pantalla;
+import com.example.jmrosell.myteacher.Games.Posicion_Pantalla;
 
 import java.util.Hashtable;
 
@@ -81,7 +81,7 @@ public class Reproductor_Asociacion extends ActionBarActivity implements View.On
             //
             // http://developer.android.com/design/patterns/navigation.html#up-vs-back
             //
-            NavUtils.navigateUpTo(this, new Intent(this, NavigationActivity.class));
+            //NavUtils.navigateUpTo(this, new Intent(this, NavigationActivity.class));
             return true;
         }
         return super.onOptionsItemSelected(item);

@@ -1,8 +1,9 @@
 <resources>
     <string name="app_name">MyTeacher</string>
-    <string name="title_juego_list">Juegos</string>
-    <string name="title_juego_detail">Juego Detail</string>
-    <string name="title_activity_navigation">NavigationActivity</string>
+    <string name="app_name_toolbar">MyTeacher</string>
+    <string name="title_game_list">Juegos</string>
+    <string name="title_game_detail">Game Detail</string>
+    <string name="title_activity_navigation_drawer">NavigationDrawer</string>
 
     <string name="title_section1">Section 1</string>
     <string name="title_section2">Section 2</string>
@@ -14,10 +15,13 @@
     <string name="action_example">Example action</string>
 
     <string name="action_settings">Settings</string>
-
-<!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="title_activity_reproductor__asociacion">Reproductor_Asociacion</string>
+    <string name="title_activity_prueba">prueba</string>
 
     <string name="hello_world">Hello world!</string>
+
+    <string name="navdrawer_item_discover">Discover</string>
+    <string name="navdrawer_item_ajustes">Ajustes</string>
+
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_reproductor__asociacion">Reproductor_Asociacion</string>
 </resources>

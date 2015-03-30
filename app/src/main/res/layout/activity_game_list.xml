@@ -1,0 +1,36 @@
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:fab="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.support.v4.widget.DrawerLayout
+        android:id="@+id/drawer_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true">
+
+        <LinearLayout android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/headerbar"
+            android:orientation="vertical">
+
+            <include layout="@layout/toolbar" />
+
+                <fragment xmlns:android="http://schemas.android.com/apk/res/android"
+                    xmlns:tools="http://schemas.android.com/tools"
+                    android:id="@+id/game_list"
+                    android:name="com.example.jmrosell.myteacher.GameListFragment"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
+                    tools:context="com.example.jmrosell.myteacher.GameListActivity"
+                    tools:layout="@android:layout/list_content" />
+
+        </LinearLayout>
+
+        <include layout="@layout/navdrawer" />
+
+    </android.support.v4.widget.DrawerLayout>
+</RelativeLayout>

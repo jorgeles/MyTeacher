@@ -1,4 +1,4 @@
-package com.example.jmrosell.myteacher.juego;
+package com.example.jmrosell.myteacher.Games;
 
 /**
  * Created by jorgeleonfernandez on 20/03/15.

@@ -1,18 +1,18 @@
-package com.example.jmrosell.myteacher.juego;
+package com.example.jmrosell.myteacher.Games;
 
 /**
- * Created by jmrosell on 10/03/15.
+ * Created by Jose on 21/03/2015.
  */
-public class Juego {
+public class Game {
     private int id;
     private String nombre;
     private String dificultad;
 
-    public Juego (){
+    public Game(){
 
     }
 
-    public Juego (int id, String nombre, String dificultad){
+    public Game(int id, String nombre, String dificultad){
         this.id = id;
         this.nombre = nombre;
         this.dificultad = dificultad;
@@ -26,14 +26,6 @@ public class Juego {
         this.id = id;
     }
 
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
     public String getDificultad() {
         return dificultad;
     }
@@ -42,8 +34,17 @@ public class Juego {
         this.dificultad = dificultad;
     }
 
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
     @Override
     public String toString(){
         return nombre;
     }
 }
+

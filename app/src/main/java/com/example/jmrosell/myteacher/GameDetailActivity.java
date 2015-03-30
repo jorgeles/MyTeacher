@@ -1,30 +1,52 @@
 package com.example.jmrosell.myteacher;
 
+import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.NavUtils;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarActivity;
+import android.support.v4.app.NavUtils;
+import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.widget.Toolbar;
+import android.util.Log;
+import android.view.Gravity;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.TextView;
+
+import java.util.ArrayList;
 
 
 /**
- * An activity representing a single Juego detail screen. This
+ * An activity representing a single Game detail screen. This
  * activity is only used on handset devices. On tablet-size devices,
  * item details are presented side-by-side with a list of items
- * in a {@link JuegoListActivity}.
+ * in a {@link GameListActivity}.
  * <p/>
  * This activity is mostly just a 'shell' activity containing nothing
- * more than a {@link JuegoDetailFragment}.
+ * more than a {@link GameDetailFragment}.
  */
-public class JuegoDetailActivity extends ActionBarActivity {
+public class GameDetailActivity extends ActionBarActivity {
+
+    private Toolbar mToolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_juego_detail);
+        setContentView(R.layout.activity_game_detail);
+
+        mToolbar = (Toolbar) findViewById(R.id.toolbar);
+
+        if (mToolbar != null) {
+            setSupportActionBar(mToolbar);
+            getSupportActionBar().setTitle(R.string.app_name);
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        }
 
         // Show the Up button in the action bar.
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         // savedInstanceState is non-null when there is fragment state
         // saved from previous configurations of this activity
@@ -39,12 +61,12 @@ public class JuegoDetailActivity extends ActionBarActivity {
             // Create the detail fragment and add it to the activity
             // using a fragment transaction.
             Bundle arguments = new Bundle();
-            arguments.putString(JuegoDetailFragment.ARG_ITEM_ID,
-                    getIntent().getStringExtra(JuegoDetailFragment.ARG_ITEM_ID));
-            JuegoDetailFragment fragment = new JuegoDetailFragment();
+            arguments.putString(GameDetailFragment.ARG_ITEM_ID,
+                    getIntent().getStringExtra(GameDetailFragment.ARG_ITEM_ID));
+            GameDetailFragment fragment = new GameDetailFragment();
             fragment.setArguments(arguments);
             getSupportFragmentManager().beginTransaction()
-                    .add(R.id.juego_detail_container, fragment)
+                    .add(R.id.game_detail_container, fragment)
                     .commit();
         }
     }
@@ -60,10 +82,9 @@ public class JuegoDetailActivity extends ActionBarActivity {
             //
             // http://developer.android.com/design/patterns/navigation.html#up-vs-back
             //
-            NavUtils.navigateUpTo(this, new Intent(this, NavigationActivity.class));
+            NavUtils.navigateUpTo(this, new Intent(this, GameListActivity.class));
             return true;
         }
         return super.onOptionsItemSelected(item);
     }
-
 }
