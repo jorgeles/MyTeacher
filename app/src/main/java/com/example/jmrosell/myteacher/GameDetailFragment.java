@@ -1,10 +1,12 @@
 package com.example.jmrosell.myteacher;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.jmrosell.myteacher.Games.Game;
@@ -61,6 +63,16 @@ public class GameDetailFragment extends Fragment {
         }*/
 
         if (juego != null) {
+            if(juego.getNombre().equals("Puzzle")){
+                Button asociacion = (Button) rootView.findViewById(R.id.button_detail);
+                asociacion.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent asociacion_item = new Intent(getActivity(), Reproductor_Asociacion.class);
+                        startActivity(asociacion_item);
+                    }
+                });
+            }
             ((TextView) rootView.findViewById(R.id.textViewNombre)).setText(juego.getNombre());
             ((TextView) rootView.findViewById(R.id.textViewDificultad)).setText(juego.getDificultad());
         }

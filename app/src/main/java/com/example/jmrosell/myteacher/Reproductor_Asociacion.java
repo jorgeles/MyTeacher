@@ -5,6 +5,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
 import android.support.v7.app.ActionBarActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -32,11 +33,20 @@ public class Reproductor_Asociacion extends ActionBarActivity implements View.On
     private int xDelta;
     private int yDelta;
 
+    private Toolbar mToolbar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         setContentView(R.layout.activity_reproductor_asociacion);
+
+        mToolbar = (Toolbar) findViewById(R.id.toolbar_asociacion);
+
+        if(mToolbar!=null){
+            setSupportActionBar(mToolbar);
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            getSupportActionBar().setTitle(R.string.app_name);
+        }
 
         marco = (ViewGroup) findViewById(R.id.marco);
         imagen = new TextView(this);
@@ -81,7 +91,7 @@ public class Reproductor_Asociacion extends ActionBarActivity implements View.On
             //
             // http://developer.android.com/design/patterns/navigation.html#up-vs-back
             //
-            //NavUtils.navigateUpTo(this, new Intent(this, NavigationActivity.class));
+            NavUtils.navigateUpTo(this, new Intent(this, GameListActivity.class));
             return true;
         }
         return super.onOptionsItemSelected(item);
