@@ -20,7 +20,11 @@ import com.example.jmrosell.myteacher.Games.GameContent;
  * Activities containing this fragment MUST implement the {@link Callbacks}
  * interface.
  */
+<<<<<<< HEAD:app/src/main/java/com/example/jmrosell/myteacher/GameListFragment.java
 public class GameListFragment extends ListFragment {
+=======
+public class JuegoListFragment extends ListFragment  {
+>>>>>>> 2d1e9ddcc9681b44eaf8aea27c4171a2f762d388:app/src/main/java/com/example/jmrosell/myteacher/JuegoListFragment.java
 
     /**
      * The serialization (saved instance state) Bundle key representing the
