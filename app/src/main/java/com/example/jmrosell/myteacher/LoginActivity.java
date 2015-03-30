@@ -52,7 +52,7 @@ public class LoginActivity extends ActionBarActivity implements LoaderCallbacks<
      * Keep track of the login task to ensure we can cancel it if requested.
      */
     private UserLoginTask mAuthTask = null;
-
+	//prueba de commit
     // UI references.
     private EditText mEmailView;
     private EditText mPasswordView;
