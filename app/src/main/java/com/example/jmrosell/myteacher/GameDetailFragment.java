@@ -63,7 +63,7 @@ public class GameDetailFragment extends Fragment {
         }*/
 
         if (juego != null) {
-            if(juego.getNombre().equals("Puzzle")){
+            if(juego.getNombre().equals("Asociacion")){
                 Button asociacion = (Button) rootView.findViewById(R.id.button_detail);
                 asociacion.setOnClickListener(new View.OnClickListener() {
                     @Override

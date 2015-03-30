@@ -17,20 +17,23 @@ public class GameContent {
 
         juego = new Game();
         juego.setId(1);
-        juego.setNombre("Puzzle");
+        juego.setNombre("Asociacion");
         juego.setDificultad("Facil");
+        juego.setDescripcion("Una descripcion");
         gameList.add(juego);
 
         juego = new Game();
         juego.setId(2);
         juego.setNombre("Cartas");
         juego.setDificultad("Media");
+        juego.setDescripcion("Otra descripcion");
         gameList.add(juego);
 
         juego = new Game();
         juego.setId(3);
         juego.setNombre("Unir");
         juego.setDificultad("Dificil");
+        juego.setDescripcion("Otra otra descripcion");
         gameList.add(juego);
     }
 }

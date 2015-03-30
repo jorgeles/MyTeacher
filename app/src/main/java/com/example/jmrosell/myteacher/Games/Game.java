@@ -7,15 +7,17 @@ public class Game {
     private int id;
     private String nombre;
     private String dificultad;
+    private String descripcion;
 
     public Game(){
 
     }
 
-    public Game(int id, String nombre, String dificultad){
+    public Game(int id, String nombre, String dificultad, String descripcion){
         this.id = id;
         this.nombre = nombre;
         this.dificultad = dificultad;
+        this.descripcion = descripcion;
     }
 
     public int getId() {
@@ -40,6 +42,14 @@ public class Game {
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
+    }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
     }
 
     @Override
