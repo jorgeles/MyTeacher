@@ -50,6 +50,13 @@ public class Reproductor_Asociacion extends ActionBarActivity implements View.On
             getSupportActionBar().setTitle(R.string.app_name);
         }
 
+        /*Añado un elemento. En el futuro esto se cargará de memoria
+        y tendremos que ir leyendolos y poniendolos en pantalla. En memoria habrá que tener
+        cada elemento asociado con un destino de manera que a la hora de hacer las comprobaciones
+        si el elemento está sobre su destino lo podamos hacer de una manera comoda. En memoria se le asignará
+        a cada elemento y a cada destino un identificador para ponerselo tambien a su elemento en pantalla.
+        Destacar que este id solo estará en la memoria principal y no en la base de datos
+         */
         marco = (ViewGroup) findViewById(R.id.marco);
         suma1 = new TextView(this);
         suma1.setGravity(Gravity.CENTER);
@@ -71,6 +78,8 @@ public class Reproductor_Asociacion extends ActionBarActivity implements View.On
         suma1.setId(d);
         marco.addView(suma1);
 
+        //Añadimos el destino aunque me he equivocado con el nombre claramente
+        //hay que ponerle un id para luego poder identificarlo
         origen1 = new TextView(this);
         origen1.setGravity(Gravity.CENTER);
         origen1.setText("5");
@@ -140,7 +149,8 @@ public class Reproductor_Asociacion extends ActionBarActivity implements View.On
                     yDelta = Y - Params.topMargin;
                     break;
                 case MotionEvent.ACTION_UP:
-                    //Al levantar el dedo simplemento mostramos un mensaje
+                    //Al levantar el dedo si esta sobre el destino lo ponemos invisible
+                    // si no lo llevamos a su lugar de origen
                     System.out.println(X);
                     System.out.println(Y);
                     System.out.println(destino_x);
