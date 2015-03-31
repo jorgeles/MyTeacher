@@ -19,6 +19,8 @@
 
     <string name="hello_world">Hello world!</string>
 
+    <string name="Reproducir">Reproducir</string>
+
     <string name="navdrawer_item_discover">Discover</string>
     <string name="navdrawer_item_ajustes">Ajustes</string>
 

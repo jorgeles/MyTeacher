@@ -14,7 +14,8 @@ public class Game_Asociacion extends Game {
 
     public Game_Asociacion(){
         super();
-        this.setNombre("Introduzca nombre de la actividad");
+        this.setNombre("Asociacion");
+        this.setDificultad("Dificil");
         elementos = new Hashtable<Integer,Elemento_Asociacion>();
         destinos = new Hashtable<Integer,Destino_Asociacion>();
 

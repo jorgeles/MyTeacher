@@ -1,0 +1,119 @@
+<ScrollView
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/scrollView">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:gravity="center_horizontal">
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_marginLeft="110dp"
+            android:layout_marginTop="50dp"
+            >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Nombre:"
+                android:textStyle="bold"
+                android:textSize="24dp"
+                android:id="@+id/NombreLabel" />
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/textViewNombre"
+                android:gravity="right"
+                android:textColor="@color/toolbar_background"
+                android:editable="false"
+                android:text="textViewName" />
+
+        </LinearLayout>
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_marginLeft="110dp"
+            android:layout_marginTop="50dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Dificultad:"
+                android:textStyle="bold"
+                android:textSize="24dp"
+                android:id="@+id/DificultadLabel" />
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="textViewDificultad"
+                android:editable="false"
+                android:textColor="@color/toolbar_background"
+                android:id="@+id/textViewDificultad" />
+        </LinearLayout>
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_marginLeft="110dp"
+            android:layout_marginTop="50dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Numero de Elementos:"
+                android:textStyle="bold"
+                android:textSize="24dp"
+                android:id="@+id/Elementos" />
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="textViewNumElementos"
+                android:editable="false"
+                android:textColor="@color/toolbar_background"
+                android:id="@+id/NumerodeElementos" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_marginTop="50dp"
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_marginLeft="110dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Numero de Destinos:"
+                android:textStyle="bold"
+                android:textSize="24dp"
+                android:id="@+id/Destinos" />
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="textViewNumDestinos"
+                android:editable="false"
+                android:textColor="@color/toolbar_background"
+                android:id="@+id/NumerodeDestinos" />
+        </LinearLayout>
+        <Button
+            android:layout_marginTop="100dp"
+            android:textStyle="bold"
+            android:background="@color/toolbar_background"
+            android:textSize="24dp"
+            android:layout_width="350dp"
+            style="?android:textAppearanceSmall"
+            android:textColor="@color/blanco"
+            android:layout_height="wrap_content"
+            android:text="@string/Reproducir"
+            android:id="@+id/button_detail" />
+    </LinearLayout>
+</ScrollView>

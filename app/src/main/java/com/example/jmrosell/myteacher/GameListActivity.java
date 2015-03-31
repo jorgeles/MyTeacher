@@ -1,10 +1,8 @@
 package com.example.jmrosell.myteacher;
 
-import android.app.ActionBar;
 import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarActivity;
@@ -16,6 +14,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.example.jmrosell.myteacher.Games.Game_Asociacion.AsociacionDetailFragment;
 
 import java.util.ArrayList;
 
@@ -134,13 +134,24 @@ public class GameListActivity extends ActionBarActivity
             // In two-pane mode, show the detail view in this activity by
             // adding or replacing the detail fragment using a
             // fragment transaction.
-            Bundle arguments = new Bundle();
-            arguments.putString(GameDetailFragment.ARG_ITEM_ID, id);
-            GameDetailFragment fragment = new GameDetailFragment();
-            fragment.setArguments(arguments);
-            getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.game_detail_container, fragment)
-                    .commit();
+            if(id.equals("0")) {
+                Bundle arguments = new Bundle();
+                arguments.putString(AsociacionDetailFragment.ARG_ITEM_ID, id);
+                AsociacionDetailFragment fragment = new AsociacionDetailFragment();
+                fragment.setArguments(arguments);
+                getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.game_detail_container, fragment)
+                        .commit();
+            }
+            else{
+                Bundle arguments = new Bundle();
+                arguments.putString(GameDetailFragment.ARG_ITEM_ID, id);
+                GameDetailFragment fragment = new GameDetailFragment();
+                fragment.setArguments(arguments);
+                getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.game_detail_container, fragment)
+                        .commit();
+            }
 
         } else {
             // In single-pane mode, simply start the detail activity

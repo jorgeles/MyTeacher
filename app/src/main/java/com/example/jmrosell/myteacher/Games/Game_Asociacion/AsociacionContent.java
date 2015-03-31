@@ -7,8 +7,10 @@ import java.util.Hashtable;
  */
 public class AsociacionContent {
 
-    public Hashtable<Integer,Elemento_Asociacion> elementos = new Hashtable<>();
-    public Hashtable<Integer,Destino_Asociacion> destinos = new Hashtable<>();
+    Game_Asociacion game = new Game_Asociacion();
+
+    public Hashtable<Integer,Elemento_Asociacion> elementos = game.elementos;
+    public Hashtable<Integer,Destino_Asociacion> destinos = game.destinos;
 
     public Destino_Asociacion destino1 = new Destino_Asociacion();
     public Destino_Asociacion destino2 = new Destino_Asociacion();
@@ -34,11 +36,11 @@ public class AsociacionContent {
         destino1.name="5";
         destino2.name="12";
 
-        elementos.put(elemento1.id,elemento1);
-        elementos.put(elemento2.id,elemento2);
+        elementos.put(elemento1.id, elemento1);
+        elementos.put(elemento2.id, elemento2);
 
-        destinos.put(destino1.id,destino1);
-        destinos.put(destino2.id,destino2);
+        destinos.put(destino1.id, destino1);
+        destinos.put(destino2.id, destino2);
 
     }
 
