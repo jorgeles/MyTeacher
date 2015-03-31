@@ -26,7 +26,9 @@ public class Reproductor_Asociacion extends ActionBarActivity implements View.On
     //Definimos el marco por el cual podemos arrastrar la imagen
     private ViewGroup marco;
     //Definimos la imagen que vasmo arrastrar
-    private TextView imagen;
+    private TextView suma1;
+    private TextView suma2;
+    private TextView origen1;
     //Tabla has que nos indica donde esta cada elemento en la pantalla
     public static Hashtable<Integer, Posicion_Pantalla> posiciones_elementos = new Hashtable<Integer, Posicion_Pantalla>();
     public static Hashtable<Integer, Posicion_Pantalla> posiciones_destinos = new Hashtable<Integer, Posicion_Pantalla>();
@@ -49,25 +51,45 @@ public class Reproductor_Asociacion extends ActionBarActivity implements View.On
         }
 
         marco = (ViewGroup) findViewById(R.id.marco);
-        imagen = new TextView(this);
-        //imagen.setGravity(Gravity.CENTER);
-        //imagen.setText("Probandooooo");
-        //imagen.setBackgroundColor(Color.RED);
-        imagen.setBackgroundDrawable(getResources().getDrawable(R.drawable.rectangulo));
+        suma1 = new TextView(this);
+        suma1.setGravity(Gravity.CENTER);
+        suma1.setText("3+2");
+        suma1.setTextColor(Color.RED);
+        suma1.setBackgroundDrawable(getResources().getDrawable(R.drawable.rectangulo));
 
         posicion = new Posicion_Pantalla();
         posicion.x = 20;
         posicion.y = (150) + 10;
         posiciones_elementos.put(1, posicion);
-        imagen.setOnTouchListener(this);
-        imagen.setX(20);
-        imagen.setY((150) + 10);
-        imagen.setWidth(120);
-        imagen.setHeight(120);
-        int d = 2;
+        suma1.setOnTouchListener(this);
+        suma1.setX(20);
+        suma1.setY((150) + 10);
+        suma1.setWidth(120);
+        suma1.setHeight(120);
+        int d = 1;
         //noinspection ResourceType
-        imagen.setId(d);
-        marco.addView(imagen);
+        suma1.setId(d);
+        marco.addView(suma1);
+
+        origen1 = new TextView(this);
+        origen1.setGravity(Gravity.CENTER);
+        origen1.setText("5");
+        origen1.setTextColor(Color.RED);
+        origen1.setBackgroundDrawable(getResources().getDrawable(R.drawable.rectangulo));
+
+        posicion = new Posicion_Pantalla();
+        posicion.x = 1100;
+        posicion.y = (150) + 10;
+        posiciones_destinos.put(100, posicion);
+        origen1.setOnTouchListener(this);
+        origen1.setX(posicion.x);
+        origen1.setY(posicion.y);
+        origen1.setWidth(120);
+        origen1.setHeight(120);
+        d = 100;
+        //noinspection ResourceType
+        origen1.setId(d);
+        marco.addView(origen1);
 
 
     }
@@ -100,41 +122,58 @@ public class Reproductor_Asociacion extends ActionBarActivity implements View.On
 
     //Al tocar la pantalla...
     public boolean onTouch(View view, MotionEvent event) {
-        //Recogemos las coordenadas del dedo
-        final int X = (int) event.getRawX();
-        final int Y = (int) event.getRawY();
+        if(view.getId()<100) {
+            //Recogemos las coordenadas del dedo
+            final int X = (int) event.getRawX();
+            final int Y = (int) event.getRawY();
+            int destino_x = posiciones_destinos.get(100).x;
+            int destino_y = posiciones_destinos.get(100).y;
 
-        //Dependiendo de la accion recogida..
-        switch (event.getAction() & MotionEvent.ACTION_MASK) {
-            //Al tocar la pantalla
-            case MotionEvent.ACTION_DOWN:
-                //Recogemos los parametros de la imagen que hemo tocado
-                RelativeLayout.LayoutParams Params =
-                        (RelativeLayout.LayoutParams) view.getLayoutParams();
-                xDelta = X - Params.leftMargin;
-                yDelta = Y - Params.topMargin;
-                break;
-            case MotionEvent.ACTION_UP:
-                //Al levantar el dedo simplemento mostramos un mensaje
-                break;
-            case MotionEvent.ACTION_MOVE:
-                //Al mover el dedo vamos actualizando
-                //los margenes de la imagen para
-                //crear efecto de arrastrado
-                RelativeLayout.LayoutParams layoutParams =
-                        (RelativeLayout.LayoutParams) view.getLayoutParams();
-                layoutParams.leftMargin = X - xDelta;
-                layoutParams.topMargin = Y - yDelta;
-                //Qutamos un poco de margen para
-                //que la imagen no se deforme
-                //al llegar al final de la pantalla y pueda ir más allá
-                //probar también el codigo omitiendo estas dos líneas
-                layoutParams.rightMargin = -50;
-                layoutParams.bottomMargin = -50;
-                //le añadimos los nuevos
-                //parametros para mover la imagen
-                view.setLayoutParams(layoutParams);
-                break;
+            //Dependiendo de la accion recogida..
+            switch (event.getAction() & MotionEvent.ACTION_MASK) {
+                //Al tocar la pantalla
+                case MotionEvent.ACTION_DOWN:
+                    //Recogemos los parametros de la imagen que hemo tocado
+                    RelativeLayout.LayoutParams Params =
+                            (RelativeLayout.LayoutParams) view.getLayoutParams();
+                    xDelta = X - Params.leftMargin;
+                    yDelta = Y - Params.topMargin;
+                    break;
+                case MotionEvent.ACTION_UP:
+                    //Al levantar el dedo simplemento mostramos un mensaje
+                    System.out.println(X);
+                    System.out.println(Y);
+                    System.out.println(destino_x);
+                    System.out.println(destino_y);
+                    if(X>=destino_x-10&&X<=destino_x+240&&Y>=destino_y+80&&Y<=destino_y+240){
+                        view.setVisibility(View.INVISIBLE);
+
+                    }
+                    else {
+                        view.setX(posiciones_elementos.get(1).x);
+                        view.setY(posiciones_elementos.get(1).y);
+                    }
+                    break;
+                case MotionEvent.ACTION_MOVE:
+                    //Al mover el dedo vamos actualizando
+                    //los margenes de la imagen para
+                    //crear efecto de arrastrado
+                    RelativeLayout.LayoutParams layoutParams =
+                            (RelativeLayout.LayoutParams) view.getLayoutParams();
+                    layoutParams.leftMargin = X - xDelta;
+                    layoutParams.topMargin = Y - yDelta;
+                    //Qutamos un poco de margen para
+                    //que la imagen no se deforme
+                    //al llegar al final de la pantalla y pueda ir más allá
+                    //probar también el codigo omitiendo estas dos líneas
+                    layoutParams.rightMargin = -50;
+                    layoutParams.bottomMargin = -50;
+                    //le añadimos los nuevos
+                    //parametros para mover la imagen
+                    view.setLayoutParams(layoutParams);
+                    break;
+            }
+
         }
         //Se podría decir que 'dibujamos'
         //la posición de la imagen en el marco.
