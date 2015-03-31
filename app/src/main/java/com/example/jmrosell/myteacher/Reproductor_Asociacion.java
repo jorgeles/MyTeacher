@@ -15,8 +15,12 @@ import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.example.jmrosell.myteacher.Games.Game_Asociacion.AsociacionContent;
+import com.example.jmrosell.myteacher.Games.Game_Asociacion.Destino_Asociacion;
+import com.example.jmrosell.myteacher.Games.Game_Asociacion.Elemento_Asociacion;
 import com.example.jmrosell.myteacher.Games.Posicion_Pantalla;
 
+import java.util.Enumeration;
 import java.util.Hashtable;
 
 
@@ -26,9 +30,8 @@ public class Reproductor_Asociacion extends ActionBarActivity implements View.On
     //Definimos el marco por el cual podemos arrastrar la imagen
     private ViewGroup marco;
     //Definimos la imagen que vasmo arrastrar
-    private TextView suma1;
-    private TextView suma2;
-    private TextView origen1;
+    private AsociacionContent contenido;
+    private TextView datos;
     //Tabla has que nos indica donde esta cada elemento en la pantalla
     public static Hashtable<Integer, Posicion_Pantalla> posiciones_elementos = new Hashtable<Integer, Posicion_Pantalla>();
     public static Hashtable<Integer, Posicion_Pantalla> posiciones_destinos = new Hashtable<Integer, Posicion_Pantalla>();
@@ -57,49 +60,67 @@ public class Reproductor_Asociacion extends ActionBarActivity implements View.On
         a cada elemento y a cada destino un identificador para ponerselo tambien a su elemento en pantalla.
         Destacar que este id solo estará en la memoria principal y no en la base de datos
          */
+        contenido=new AsociacionContent();
         marco = (ViewGroup) findViewById(R.id.marco);
-        suma1 = new TextView(this);
-        suma1.setGravity(Gravity.CENTER);
-        suma1.setText("3+2");
-        suma1.setTextColor(Color.RED);
-        suma1.setBackgroundDrawable(getResources().getDrawable(R.drawable.rectangulo));
 
-        posicion = new Posicion_Pantalla();
-        posicion.x = 20;
-        posicion.y = (150) + 10;
-        posiciones_elementos.put(1, posicion);
-        suma1.setOnTouchListener(this);
-        suma1.setX(20);
-        suma1.setY((150) + 10);
-        suma1.setWidth(120);
-        suma1.setHeight(120);
-        int d = 1;
-        //noinspection ResourceType
-        suma1.setId(d);
-        marco.addView(suma1);
+        Enumeration<Integer> e = contenido.elementos.keys();
+        Integer code;
+        int i=0;
+        while( e.hasMoreElements() ){
+            code =  e.nextElement();
+            Elemento_Asociacion elemento = contenido.elementos.get(code);
+            datos = new TextView(this);
+            datos.setGravity(Gravity.CENTER);
+            datos.setText(elemento.name);
+            datos.setTextColor(Color.RED);
+            datos.setBackgroundDrawable(getResources().getDrawable(R.drawable.rectangulo));
 
-        //Añadimos el destino aunque me he equivocado con el nombre claramente
-        //hay que ponerle un id para luego poder identificarlo
-        origen1 = new TextView(this);
-        origen1.setGravity(Gravity.CENTER);
-        origen1.setText("5");
-        origen1.setTextColor(Color.RED);
-        origen1.setBackgroundDrawable(getResources().getDrawable(R.drawable.rectangulo));
+            posicion = new Posicion_Pantalla();
+            posicion.x = 20;
+            posicion.y = (150*i) + 10;
+            posiciones_elementos.put(elemento.id, posicion);
 
-        posicion = new Posicion_Pantalla();
-        posicion.x = 1100;
-        posicion.y = (150) + 10;
-        posiciones_destinos.put(100, posicion);
-        origen1.setOnTouchListener(this);
-        origen1.setX(posicion.x);
-        origen1.setY(posicion.y);
-        origen1.setWidth(120);
-        origen1.setHeight(120);
-        d = 100;
-        //noinspection ResourceType
-        origen1.setId(d);
-        marco.addView(origen1);
+            datos.setOnTouchListener(this);
+            datos.setX(20);
+            datos.setY((150*i) + 10);
+            datos.setWidth(120);
+            datos.setHeight(120);
 
+            datos.setId(elemento.id);
+            marco.addView(datos);
+
+            i++;
+
+        }
+        i=0;
+        e = contenido.destinos.keys();
+        Integer clave;
+        while( e.hasMoreElements() ){
+            clave =  e.nextElement();
+            Destino_Asociacion destino = contenido.destinos.get(clave);
+            datos = new TextView(this);
+            datos.setGravity(Gravity.CENTER);
+            datos.setText(destino.name);
+            datos.setTextColor(Color.RED);
+            datos.setBackgroundDrawable(getResources().getDrawable(R.drawable.rectangulo));
+
+            posicion = new Posicion_Pantalla();
+            posicion.x = 1100;
+            posicion.y = (150*i) + 10;
+            posiciones_destinos.put(destino.id, posicion);
+
+            datos.setOnTouchListener(this);
+            datos.setX(1100);
+            datos.setY((150*i) + 10);
+            datos.setWidth(120);
+            datos.setHeight(120);
+
+            datos.setId(destino.id);
+            marco.addView(datos);
+
+            i++;
+
+        }
 
     }
 
@@ -135,8 +156,12 @@ public class Reproductor_Asociacion extends ActionBarActivity implements View.On
             //Recogemos las coordenadas del dedo
             final int X = (int) event.getRawX();
             final int Y = (int) event.getRawY();
-            int destino_x = posiciones_destinos.get(100).x;
-            int destino_y = posiciones_destinos.get(100).y;
+
+            //indico quien es el destino del elemento que se ha seleccionado
+            int id_destino = contenido.elementos.get(view.getId()).destino.id;
+            System.out.println(id_destino);
+            int destino_x = posiciones_destinos.get(id_destino).x;
+            int destino_y = posiciones_destinos.get(id_destino).y;
 
             //Dependiendo de la accion recogida..
             switch (event.getAction() & MotionEvent.ACTION_MASK) {
@@ -151,17 +176,13 @@ public class Reproductor_Asociacion extends ActionBarActivity implements View.On
                 case MotionEvent.ACTION_UP:
                     //Al levantar el dedo si esta sobre el destino lo ponemos invisible
                     // si no lo llevamos a su lugar de origen
-                    System.out.println(X);
-                    System.out.println(Y);
-                    System.out.println(destino_x);
-                    System.out.println(destino_y);
                     if(X>=destino_x-10&&X<=destino_x+240&&Y>=destino_y+80&&Y<=destino_y+240){
                         view.setVisibility(View.INVISIBLE);
 
                     }
                     else {
-                        view.setX(posiciones_elementos.get(1).x);
-                        view.setY(posiciones_elementos.get(1).y);
+                        view.setX(posiciones_elementos.get(view.getId()).x);
+                        view.setY(posiciones_elementos.get(view.getId()).y);
                     }
                     break;
                 case MotionEvent.ACTION_MOVE:
