@@ -152,15 +152,17 @@ public class LoginActivity extends ActionBarActivity implements LoaderCallbacks<
         } else {
             // Show a progress spinner, and kick off a background task to
             // perform the user login attempt.
-            showProgress(true);
-            mAuthTask = new UserLoginTask(email, password);
-            mAuthTask.execute((Void) null);
+        //    showProgress(true);
+        //    mAuthTask = new UserLoginTask(email, password);
+        //    mAuthTask.execute((Void) null);
+        //    Intent mi_itent = new Intent(LoginActivity.this, GameListActivity.class);
+        //     startActivity(mi_itent);
         }
     }
 
     private boolean isEmailValid(String email) {
         //TODO: Replace this with your own logic
-        return email.contains("@");
+        return email.equals("admin");
     }
 
     private boolean isPasswordValid(String password) {

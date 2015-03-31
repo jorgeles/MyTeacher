@@ -19,7 +19,7 @@ public class GameContent {
         juego.setId(1);
         juego.setNombre("Asociacion");
         juego.setDificultad("Facil");
-        juego.setDescripcion("Una descripcion");
+        juego.setDescripcion("Una descripcion muuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuu lllllllaaaaaaaaaarrrrrgaaaaaaaaaaaaaa");
         gameList.add(juego);
 
         juego = new Game();

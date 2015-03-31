@@ -20,17 +20,15 @@
         <ScrollView android:id="@+id/login_form" android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <LinearLayout android:id="@+id/email_login_form" android:layout_width="match_parent"
-                android:layout_height="wrap_content" android:orientation="vertical"
-                android:gravity="center_horizontal">
+            <RelativeLayout android:id="@+id/email_login_form" android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:orientation="vertical">
 
                 <EditText android:id="@+id/email" android:layout_width="350dp"
                     android:layout_height="wrap_content" android:hint="@string/prompt_usuario"
                     android:inputType="textEmailAddress" android:maxLines="1"
                     android:singleLine="true"
-                    android:layout_marginTop="58dp"
-                    android:layout_alignParentTop="true"
-                    android:layout_centerHorizontal="true" />
+                    android:layout_centerHorizontal="true"
+                    android:layout_margin="130dp"/>
 
                 <EditText android:id="@+id/password" android:layout_width="350dp"
                     android:layout_height="wrap_content" android:hint="@string/prompt_password"
@@ -38,21 +36,19 @@
                     android:imeActionLabel="@string/action_sign_in_short"
                     android:imeOptions="actionUnspecified" android:inputType="textPassword"
                     android:maxLines="1" android:singleLine="true"
-                    android:layout_marginTop="47dp"
-                    android:layout_below="@+id/email"
-                    android:layout_centerHorizontal="true" />
+                    android:layout_centerHorizontal="true"
+                    android:layout_margin="200dp"/>
 
                 <Button android:id="@+id/email_sign_in_button" style="?android:textAppearanceSmall"
                     android:layout_width="350dp" android:layout_height="wrap_content"
                     android:text="@string/action_sign_in"
                     android:textStyle="bold"
                     android:background="@color/toolbar_background"
-                    android:textSize="24dp"
-                    android:textColor="@color/blanco"
-                    android:layout_below="@+id/password"
                     android:layout_centerHorizontal="true"
-                    android:layout_marginTop="40dp" />
-        </LinearLayout>
+                    android:layout_margin="270dp"
+                    android:textSize="24dp"
+                    android:textColor="@color/blanco"/>
+        </RelativeLayout>
         </ScrollView>
     </RelativeLayout>
 </RelativeLayout>

@@ -63,15 +63,19 @@ public class GameDetailFragment extends Fragment {
         }*/
 
         if (juego != null) {
-            if(juego.getNombre().equals("Asociacion")){
-                Button asociacion = (Button) rootView.findViewById(R.id.button_detail);
-                asociacion.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        Intent asociacion_item = new Intent(getActivity(), Reproductor_Asociacion.class);
-                        startActivity(asociacion_item);
-                    }
-                });
+            switch (juego.getId()) {
+                case 1:
+                    Button asociacion = (Button) rootView.findViewById(R.id.button_detail);
+                    asociacion.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            Intent asociacion_item = new Intent(getActivity(), Reproductor_Asociacion.class);
+                            startActivity(asociacion_item);
+                        }
+                    });
+                    break;
+                case 2:
+                    break;
             }
             ((TextView) rootView.findViewById(R.id.textViewNombre)).setText(juego.getNombre());
             ((TextView) rootView.findViewById(R.id.textViewDificultad)).setText(juego.getDificultad());

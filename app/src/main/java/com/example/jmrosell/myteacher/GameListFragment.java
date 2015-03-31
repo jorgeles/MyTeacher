@@ -6,10 +6,14 @@ import android.support.v4.app.ListFragment;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.SimpleAdapter;
 
 
 import com.example.jmrosell.myteacher.Games.Game;
 import com.example.jmrosell.myteacher.Games.GameContent;
+
+import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  * A list fragment representing a list of Games. This fragment
@@ -68,9 +72,13 @@ public class GameListFragment extends ListFragment {
     public GameListFragment() {
     }
 
+    private SimpleAdapter sa;
+    ArrayList<HashMap<String,String>> list = new ArrayList<HashMap<String,String>>();
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        HashMap<String,String> item;
 
         // TODO: replace with a real list adapter.
         /*setListAdapter(new ArrayAdapter<DummyContent.DummyItem>(
@@ -83,11 +91,30 @@ public class GameListFragment extends ListFragment {
         }
         // simple_list_item_activated_1 sólo es soportado a partir de API 11
         // lo cambio por simple_list_item_1
-        setListAdapter(new ArrayAdapter<Game>(
+        /*setListAdapter(new ArrayAdapter<Game>(
                 getActivity(),
                 android.R.layout.simple_list_item_1,
                 android.R.id.text1,
-                GameContent.getGameList()));
+                GameContent.getGameList()));*/
+        ArrayList<Game> games = new ArrayList<>();
+        games = GameContent.getGameList();
+        for(int i=0;i<games.size();i++){
+            item = new HashMap<String,String>();
+            item.put( "line1", games.get(i).getNombre());
+            //Si la descripcion es muy grande solo ponemos los primera X caracteres
+            if(games.get(i).getDescripcion().length() > 25){
+                item.put( "line2", games.get(i).getDescripcion().substring(0,25)+"...");
+            }else {
+                item.put( "line2", games.get(i).getDescripcion());
+            }
+            list.add( item );
+        }
+        sa = new SimpleAdapter(getActivity(), list,
+                android.R.layout.two_line_list_item ,
+                new String[] { "line1","line2" },
+                new int[] {android.R.id.text1, android.R.id.text2});
+        setListAdapter( sa );
+
     }
 
     @Override
