@@ -1,7 +1,6 @@
-<ScrollView
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
-    xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/scrollView">
 
     <LinearLayout
@@ -9,13 +8,24 @@
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:gravity="center_horizontal">
+
+        <Button
+            android:layout_marginTop="10dp"
+            android:textStyle="bold"
+            android:background="@color/toolbar_background"
+            android:textSize="24dp"
+            android:layout_width="350dp"
+            style="?android:textAppearanceSmall"
+            android:textColor="@color/blanco"
+            android:layout_height="wrap_content"
+            android:text="@string/Reproducir"
+            android:id="@+id/button_detail" />
+
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-            android:layout_marginLeft="110dp"
-            android:layout_marginTop="50dp"
-            >
+            android:layout_marginTop="30dp">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -35,12 +45,12 @@
                 android:text="textViewName" />
 
         </LinearLayout>
+
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-            android:layout_marginLeft="110dp"
-            android:layout_marginTop="50dp">
+            android:layout_marginTop="30dp">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -58,62 +68,85 @@
                 android:textColor="@color/toolbar_background"
                 android:id="@+id/textViewDificultad" />
         </LinearLayout>
+
+
         <LinearLayout
-            android:orientation="horizontal"
+            android:orientation="vertical"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-            android:layout_marginLeft="110dp"
             android:layout_marginTop="50dp">
 
-            <TextView
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:text="Numero de Elementos:"
-                android:textStyle="bold"
-                android:textSize="24dp"
-                android:id="@+id/Elementos" />
+                android:orientation="horizontal">
 
-            <EditText
-                android:layout_width="wrap_content"
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Elementos:"
+                    android:textStyle="bold"
+                    android:textSize="24dp"
+                    android:id="@+id/Elementos" />
+
+                <EditText
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="textViewNumElementos"
+                    android:editable="false"
+                    android:textColor="@color/toolbar_background"
+                    android:id="@+id/NumerodeElementos" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:text="textViewNumElementos"
-                android:editable="false"
-                android:textColor="@color/toolbar_background"
-                android:id="@+id/NumerodeElementos" />
+                android:orientation="vertical"
+                android:id="@+id/ListaElementos"
+                android:layout_marginTop="10dp">
+
+            </LinearLayout>
         </LinearLayout>
+
         <LinearLayout
             android:layout_marginTop="50dp"
-            android:orientation="horizontal"
+            android:orientation="vertical"
             android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:layout_marginLeft="110dp">
+            android:layout_height="fill_parent">
 
-            <TextView
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:text="Numero de Destinos:"
-                android:textStyle="bold"
-                android:textSize="24dp"
-                android:id="@+id/Destinos" />
+                android:orientation="horizontal">
 
-            <EditText
-                android:layout_width="wrap_content"
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Numero de Destinos:"
+                    android:textStyle="bold"
+                    android:textSize="24dp"
+                    android:id="@+id/Destinos" />
+
+                <EditText
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="textViewNumDestinos"
+                    android:editable="false"
+                    android:textColor="@color/toolbar_background"
+                    android:id="@+id/NumerodeDestinos" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:text="textViewNumDestinos"
-                android:editable="false"
-                android:textColor="@color/toolbar_background"
-                android:id="@+id/NumerodeDestinos" />
+                android:orientation="vertical"
+                android:id="@+id/ListaDestinos"
+                android:layout_marginTop="10dp"></LinearLayout>
         </LinearLayout>
-        <Button
-            android:layout_marginTop="100dp"
-            android:textStyle="bold"
-            android:background="@color/toolbar_background"
-            android:textSize="24dp"
-            android:layout_width="350dp"
-            style="?android:textAppearanceSmall"
-            android:textColor="@color/blanco"
-            android:layout_height="wrap_content"
-            android:text="@string/Reproducir"
-            android:id="@+id/button_detail" />
+
+
     </LinearLayout>
 </ScrollView>
+
+
+

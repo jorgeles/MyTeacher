@@ -27,17 +27,21 @@
         <activity
             android:name=".LoginActivity"
             android:label="@string/app_name"
-            android:windowSoftInputMode="adjustResize|stateVisible"
-            android:theme="@style/AppTheme">
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustResize|stateVisible" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-		<activity
+        <activity
             android:name=".Reproductor_Asociacion"
             android:label="@string/title_activity_reproductor__asociacion" >
+        </activity>
+        <activity
+            android:name=".Games.Game_Asociacion.AsociacionDetailActivity"
+            android:label="@string/title_activity_asociacion_detail" >
         </activity>
     </application>
 
