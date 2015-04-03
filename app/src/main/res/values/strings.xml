@@ -26,10 +26,9 @@
 
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_reproductor__asociacion">Reproductor_Asociacion</string>
-<<<<<<< HEAD
+
     <string name="title_activity_cajas">cajas</string>
     <string name="title_activity_juego_cajas">Juego_cajas</string>
-=======
+
     <string name="title_activity_asociacion_detail">AsociacionDetailActivity</string>
->>>>>>> 53c4185eddfe259fb70ebc3d733c9d6846b8edc0
 </resources>

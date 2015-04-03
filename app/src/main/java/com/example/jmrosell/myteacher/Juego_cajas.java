@@ -5,9 +5,11 @@ import android.animation.ObjectAnimator;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 
 public class Juego_cajas extends ActionBarActivity {
@@ -25,12 +27,21 @@ public class Juego_cajas extends ActionBarActivity {
         getWindowManager().getDefaultDisplay().getMetrics(metrics);
         int height = metrics.heightPixels;
 
-        // Movemos y escalamos el regalo y el progreso
+        drwRect.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (view == findViewById(R.id.drwRect)) {
+                    Toast.makeText(Juego_cajas.this, "Tocado", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
+        // Movemos el imagen view
         AnimatorSet set = new AnimatorSet();
         set.playTogether(
-                ObjectAnimator.ofFloat(drwRect, "translationY", 0, height/14)
+                ObjectAnimator.ofFloat(drwRect, "translationY", 0, height/1)
         );
-        set.setDuration(1 * 500).start();
+        set.setDuration(3000).start();
     }
 
 

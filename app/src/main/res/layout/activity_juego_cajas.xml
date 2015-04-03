@@ -7,12 +7,12 @@
         android:layout_margin="0dp"
         android:padding="12dp"
         android:layout_width="match_parent"
-        android:layout_height="576dp">
+        android:layout_height="738dp">
 
         <ImageView
             android:id="@+id/drwRect"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
+            android:layout_width="300dp"
+            android:layout_height="100dp"
             android:layout_centerHorizontal="true"
             android:src="@drawable/rectangulo"/>
 
