@@ -8,11 +8,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 
 import com.example.jmrosell.myteacher.Games.Game;
 import com.example.jmrosell.myteacher.Games.GameContent;
 import com.example.jmrosell.myteacher.R;
 import com.example.jmrosell.myteacher.Reproductor_Asociacion;
+
+import java.util.Enumeration;
 
 /**
  * A fragment representing a single Game detail screen.
@@ -26,6 +29,8 @@ public class AsociacionDetailFragment extends Fragment implements View.OnClickLi
      * represents.
      */
     public static final String ARG_ITEM_ID = "item_id";
+
+    int index;
 
     /**
      * The dummy content this fragment is presenting.
@@ -49,7 +54,7 @@ public class AsociacionDetailFragment extends Fragment implements View.OnClickLi
             // arguments. In a real-world scenario, use a Loader
             // to load content from a content provider.
             //   mItem = DummyContent.ITEM_MAP.get(getArguments().getString(ARG_ITEM_ID));
-            int index = Integer.valueOf(getArguments().getString(ARG_ITEM_ID));
+            index = Integer.valueOf(getArguments().getString(ARG_ITEM_ID));
             juego = (Game) GameContent.getGameList().get(index);
         }
     }
@@ -58,6 +63,7 @@ public class AsociacionDetailFragment extends Fragment implements View.OnClickLi
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.asociacion_game_detail, container, false);
+
 
         // Show the dummy content as text in a TextView.
         /*if (mItem != null) {
@@ -68,13 +74,42 @@ public class AsociacionDetailFragment extends Fragment implements View.OnClickLi
 
         if (juego != null) {
             if (juego.getNombre().equals("Asociacion")) {
+                LinearLayout lista_Elementos = (LinearLayout) rootView.findViewById(R.id.ListaElementos);
+                LinearLayout lista_destinos = (LinearLayout) rootView.findViewById(R.id.ListaDestinos);
+
                 Button asociacion = (Button) rootView.findViewById(R.id.button_detail);
                 asociacion.setOnClickListener(this);
+                ((EditText) rootView.findViewById(R.id.textViewNombre)).setText(contenido.game.getNombre());
+                ((EditText) rootView.findViewById(R.id.textViewDificultad)).setText(contenido.game.getDificultad());
+                ((EditText) rootView.findViewById(R.id.NumerodeElementos)).setText(String.valueOf(contenido.game.elementos.size()));
+                ((EditText) rootView.findViewById(R.id.NumerodeDestinos)).setText(String.valueOf(contenido.game.destinos.size()));
+
+                Enumeration<Integer> e = contenido.elementos.keys();
+                Integer clave;
+                while (e.hasMoreElements()) {
+                    clave = e.nextElement();
+                    Elemento_Asociacion elemento = contenido.elementos.get(clave);
+                    Button boton = new Button(this.getActivity());
+                    boton.setText(elemento.name);
+                    boton.setId(elemento.id);
+                    boton.setOnClickListener(this);
+                    lista_Elementos.addView(boton);
+                }
+
+
+                e = contenido.destinos.keys();
+                while (e.hasMoreElements()) {
+                    clave = e.nextElement();
+                    Destino_Asociacion destino = contenido.destinos.get(clave);
+                    Button boton = new Button(this.getActivity());
+                    boton.setText(destino.name);
+                    boton.setId(destino.id);
+                    boton.setOnClickListener(this);
+                    lista_destinos.addView(boton);
+                }
+
             }
-            ((EditText) rootView.findViewById(R.id.textViewNombre)).setText(contenido.game.getNombre());
-            ((EditText) rootView.findViewById(R.id.textViewDificultad)).setText(contenido.game.getDificultad());
-            ((EditText) rootView.findViewById(R.id.NumerodeElementos)).setText(String.valueOf(contenido.game.elementos.size()));
-            ((EditText) rootView.findViewById(R.id.NumerodeDestinos)).setText(String.valueOf(contenido.game.destinos.size()));
+
         }
 
         return rootView;
@@ -86,6 +121,17 @@ public class AsociacionDetailFragment extends Fragment implements View.OnClickLi
         if (v.getId() == R.id.button_detail) {
             Intent asociacion_item = new Intent(getActivity(), Reproductor_Asociacion.class);
             startActivity(asociacion_item);
+        }
+        else{
+
+            Bundle arguments = new Bundle();
+            arguments.putString(AsociacionDetailFragment.ARG_ITEM_ID, String.valueOf(index));
+            ElementDetailFragment fragment = new ElementDetailFragment();
+            fragment.setArguments(arguments);
+            getActivity().getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.game_detail_container, fragment)
+                    .commit();
+
         }
     }
 }

@@ -40,12 +40,17 @@
             android:label="@string/title_activity_reproductor__asociacion" >
         </activity>
         <activity
+<<<<<<< HEAD
             android:name=".cajas"
             android:label="@string/title_activity_cajas" >
         </activity>
         <activity
             android:name=".Juego_cajas"
             android:label="@string/title_activity_juego_cajas" >
+=======
+            android:name=".Games.Game_Asociacion.AsociacionDetailActivity"
+            android:label="@string/title_activity_asociacion_detail" >
+>>>>>>> 53c4185eddfe259fb70ebc3d733c9d6846b8edc0
         </activity>
     </application>
 

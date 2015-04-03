@@ -135,13 +135,8 @@ public class GameListActivity extends ActionBarActivity
             // adding or replacing the detail fragment using a
             // fragment transaction.
             if(id.equals("0")) {
-                Bundle arguments = new Bundle();
-                arguments.putString(AsociacionDetailFragment.ARG_ITEM_ID, id);
-                AsociacionDetailFragment fragment = new AsociacionDetailFragment();
-                fragment.setArguments(arguments);
-                getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.game_detail_container, fragment)
-                        .commit();
+                this.asociacionDetailFrag(id);
+
             }
             else {
                 Bundle arguments = new Bundle();
@@ -298,5 +293,19 @@ public class GameListActivity extends ActionBarActivity
         fragmentActivo = fragmentTarget;
 
         ft.commit();
+    }
+
+    public void asociacionDetailFrag(String id){
+        Bundle arguments = new Bundle();
+        arguments.putString(AsociacionDetailFragment.ARG_ITEM_ID, id);
+        AsociacionDetailFragment fragment = new AsociacionDetailFragment();
+        fragment.setArguments(arguments);
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.game_detail_container, fragment)
+                .commit();
+    }
+
+    public void elementDetailFrag(String id){
+
     }
 }
