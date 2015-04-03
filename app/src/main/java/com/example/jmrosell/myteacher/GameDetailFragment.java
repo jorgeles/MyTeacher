@@ -75,6 +75,14 @@ public class GameDetailFragment extends Fragment {
                     });
                     break;
                 case 2:
+                    Button segundo = (Button) rootView.findViewById(R.id.button_detail);
+                    segundo.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            Intent segundo_item = new Intent(getActivity(), Juego_cajas.class);
+                            startActivity(segundo_item);
+                        }
+                    });
                     break;
             }
             ((TextView) rootView.findViewById(R.id.textViewNombre)).setText(juego.getNombre());

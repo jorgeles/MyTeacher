@@ -143,7 +143,7 @@ public class GameListActivity extends ActionBarActivity
                         .replace(R.id.game_detail_container, fragment)
                         .commit();
             }
-            else{
+            else {
                 Bundle arguments = new Bundle();
                 arguments.putString(GameDetailFragment.ARG_ITEM_ID, id);
                 GameDetailFragment fragment = new GameDetailFragment();
