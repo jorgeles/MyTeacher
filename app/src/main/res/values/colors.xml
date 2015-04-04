@@ -53,6 +53,9 @@
     <color name="negro">#000000</color>
     <color name="transparente">#00000000</color>
     <color name="transparenteCapa">#CCFFFFFF</color>
+    <color name="cartasBg">@color/gris300</color>
+    <color name="borderCartas">@color/purple_a200</color>
+
 
     <color name="toolbar_background">@color/azul800</color>
     <color name="navdrawer_background">@color/blanco</color>
