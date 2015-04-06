@@ -24,7 +24,7 @@ public class GameContent {
 
         juego = new Game();
         juego.setId(2);
-        juego.setNombre("Cartas");
+        juego.setNombre("Cajas");
         juego.setDificultad("Media");
         juego.setDescripcion("Otra descripcion");
         gameList.add(juego);

@@ -1,13 +1,18 @@
 package com.example.jmrosell.myteacher;
 
 import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.annotation.TargetApi;
 import android.content.Intent;
+import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.ColorFilter;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
+import android.graphics.drawable.ShapeDrawable;
+import android.os.Handler;
 import android.support.v4.app.NavUtils;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
@@ -32,6 +37,12 @@ public class Juego_cajas extends ActionBarActivity {
     private TextView text1;
     private TextView text2;
     private TextView text3;
+    private AnimatorSet set;
+    private Drawable shape;
+    private Drawable shape_text2;
+    private Drawable shape_text3;
+
+    private int textColor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +54,7 @@ public class Juego_cajas extends ActionBarActivity {
         final ArrayList<ArrayList<String>> palabras = CajasContent.getCajasList();
 
         mToolbar = (Toolbar) findViewById(R.id.toolbar_cajas);
+        set = new AnimatorSet();
 
         if (mToolbar != null) {
             setSupportActionBar(mToolbar);
@@ -52,58 +64,98 @@ public class Juego_cajas extends ActionBarActivity {
 
         text1 = (TextView) findViewById(R.id.text1);
         text1.setBackgroundResource(R.drawable.border_textview);
-        text1.setText(palabras.get(0).get(0));
-        final Drawable shape = (Drawable) text1.getBackground();
+        text1.setText(palabras.get(1).get(0));
+        shape = (Drawable) text1.getBackground();
 
         text2 = (TextView) findViewById(R.id.text2);
         text2.setBackgroundResource(R.drawable.border_textview);
-        text2.setText(palabras.get(0).get(1));
-        final Drawable shape_text2 = (Drawable) text2.getBackground();
+        text2.setText(palabras.get(1).get(1));
+        shape_text2 = (Drawable) text2.getBackground();
 
         text3 = (TextView) findViewById(R.id.text3);
         text3.setBackgroundResource(R.drawable.border_textview);
-        text3.setText(palabras.get(0).get(2));
-        final Drawable shape_text3 = (Drawable) text3.getBackground();
+        text3.setText(palabras.get(1).get(2));
+        shape_text3 = (Drawable) text3.getBackground();
 
+        textColor = text3.getCurrentTextColor();
         // Dimensiones de la pantalla
         DisplayMetrics metrics = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(metrics);
-        int height = metrics.heightPixels;
+        final int height = metrics.heightPixels;
 
         // Movemos el text view
-        final AnimatorSet set = new AnimatorSet();
         set.playTogether(
                 ObjectAnimator.ofFloat(text1, "translationY", 0, height - 185),
                 ObjectAnimator.ofFloat(text2, "translationY", 0, height - 185),
                 ObjectAnimator.ofFloat(text3, "translationY", 0, height - 185)
         );
-        set.setDuration(3000).start();
+        set.setDuration(3000);
 
-        set.addListener(new Animator.AnimatorListener() {
+        set.addPauseListener(new AnimatorListenerAdapter() {
             @Override
-            public void onAnimationStart(Animator animation) {
+            public void onAnimationPause(Animator animation) {
+                super.onAnimationPause(animation);
+                // Execute some code after 2 seconds have passed
+                Handler handler = new Handler();
+                handler.postDelayed(new Runnable() {
+                    public void run() {
+                        shape.setColorFilter(null);
+                        shape_text2.setColorFilter(null);
+                        shape_text3.setColorFilter(null);
+
+                        text1.setTextColor(textColor);
+                        text2.setTextColor(textColor);
+                        text3.setTextColor(textColor);
+                        set.start();
+                    }
+                }, 2000);
+            }
+        });
+        set.addListener(new AnimatorListenerAdapter() {
+            @Override
+            public void onAnimationStart(Animator animation){
+                super.onAnimationStart(animation);
+                // Movemos el text view
+                set.playTogether(
+                        ObjectAnimator.ofFloat(text1, "translationY", 0, height - 185),
+                        ObjectAnimator.ofFloat(text2, "translationY", 0, height - 185),
+                        ObjectAnimator.ofFloat(text3, "translationY", 0, height - 185)
+                );
+                set.setDuration(3000);
             }
             @Override
             public void onAnimationEnd(Animator animation) {
-                shape.setColorFilter(Color.parseColor("#FA5858"), android.graphics.PorterDuff.Mode.SRC);
-                shape_text2.setColorFilter(Color.parseColor("#FA5858"), android.graphics.PorterDuff.Mode.SRC);
-                shape_text3.setColorFilter(Color.parseColor("#FA5858"), android.graphics.PorterDuff.Mode.SRC);
+                super.onAnimationEnd(animation);
+                shape.setColorFilter(Color.parseColor("#FA5858"), PorterDuff.Mode.SRC);
+                shape_text2.setColorFilter(Color.parseColor("#FA5858"), PorterDuff.Mode.SRC);
+                shape_text3.setColorFilter(Color.parseColor("#FA5858"), PorterDuff.Mode.SRC);
                 text1.setTextColor(getResources().getColor(R.color.blanco));
                 text2.setTextColor(getResources().getColor(R.color.blanco));
                 text3.setTextColor(getResources().getColor(R.color.blanco));
-            }
-            @Override
-            public void onAnimationCancel(Animator animation) {
-            }
-            @Override
-            public void onAnimationRepeat(Animator animation) {
+                // Execute some code after 2 seconds have passed
+                Handler handler = new Handler();
+                handler.postDelayed(new Runnable() {
+                    public void run() {
+                        shape.setColorFilter(null);
+                        shape_text2.setColorFilter(null);
+                        shape_text3.setColorFilter(null);
+
+                        text1.setTextColor(textColor);
+                        text2.setTextColor(textColor);
+                        text3.setTextColor(textColor);
+                        set.start();
+                    }
+                }, 2000);
             }
         });
+
+        set.start();
+
         text1.setOnClickListener(new TextView.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (view == findViewById(R.id.text1) && (!set.isPaused())) {
-                    if(text1.getText().equals(palabras.get(0).get(3))) {
+                    if(text1.getText().equals(palabras.get(1).get(3))) {
                         // Para cambiar el color al fondo del drawable
                         shape.setColorFilter(Color.parseColor("#66BB6A"), android.graphics.PorterDuff.Mode.SRC);
                     }else{
@@ -119,7 +171,7 @@ public class Juego_cajas extends ActionBarActivity {
             @Override
             public void onClick(View view) {
                 if (view == findViewById(R.id.text2) && (!set.isPaused())) {
-                    if(text2.getText().equals(palabras.get(0).get(3))) {
+                    if(text2.getText().equals(palabras.get(1).get(3))) {
                         // Para cambiar el color al fondo del drawable
                         shape_text2.setColorFilter(Color.parseColor("#66BB6A"), android.graphics.PorterDuff.Mode.SRC);
                     }else{
@@ -135,7 +187,7 @@ public class Juego_cajas extends ActionBarActivity {
             @Override
             public void onClick(View view) {
                 if (view == findViewById(R.id.text3) && (!set.isPaused())) {
-                    if(text3.getText().equals(palabras.get(0).get(3))) {
+                    if(text3.getText().equals(palabras.get(1).get(3))) {
                         // Para cambiar el color al fondo del drawable
                         shape_text3.setColorFilter(Color.parseColor("#66BB6A"), android.graphics.PorterDuff.Mode.SRC);
                     }else{

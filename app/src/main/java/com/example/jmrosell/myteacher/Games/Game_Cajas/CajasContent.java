@@ -21,5 +21,12 @@ public class CajasContent {
         caja.add("Habaco");     //Tercera opcion
         caja.add("Abaco");      //Opcion correcta
         cajasList.add(caja);
+
+        caja = new ArrayList<>();
+        caja.add("Aba");
+        caja.add("Haba");
+        caja.add("Ava");
+        caja.add("Haba");
+        cajasList.add(caja);
     }
 }
