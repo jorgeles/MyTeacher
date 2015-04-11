@@ -7,6 +7,7 @@ import android.support.v4.app.NavUtils;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
@@ -14,11 +15,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.jmrosell.myteacher.Games.Game_Asociacion.AsociacionContent;
 import com.example.jmrosell.myteacher.Games.Game_Asociacion.Destino_Asociacion;
 import com.example.jmrosell.myteacher.Games.Game_Asociacion.Elemento_Asociacion;
 import com.example.jmrosell.myteacher.Games.Posicion_Pantalla;
+import com.google.android.gms.analytics.HitBuilders;
 
 import java.util.Enumeration;
 import java.util.Hashtable;
@@ -72,7 +75,8 @@ public class Reproductor_Asociacion extends ActionBarActivity implements View.On
             datos = new TextView(this);
             datos.setGravity(Gravity.CENTER);
             datos.setText(elemento.name);
-            datos.setTextColor(Color.RED);
+            datos.setTextSize(20);
+            datos.setTextColor(Color.WHITE);
             datos.setBackgroundDrawable(getResources().getDrawable(R.drawable.rectangulo));
 
             posicion = new Posicion_Pantalla();
@@ -101,7 +105,8 @@ public class Reproductor_Asociacion extends ActionBarActivity implements View.On
             datos = new TextView(this);
             datos.setGravity(Gravity.CENTER);
             datos.setText(destino.name);
-            datos.setTextColor(Color.RED);
+            datos.setTextSize(20);
+            datos.setTextColor(Color.WHITE);
             datos.setBackgroundDrawable(getResources().getDrawable(R.drawable.rectangulo));
 
             posicion = new Posicion_Pantalla();
@@ -177,10 +182,30 @@ public class Reproductor_Asociacion extends ActionBarActivity implements View.On
                     //Al levantar el dedo si esta sobre el destino lo ponemos invisible
                     // si no lo llevamos a su lugar de origen
                     if(X>=destino_x-10&&X<=destino_x+240&&Y>=destino_y+80&&Y<=destino_y+240){
+                        GAHelper.tracker.send(new HitBuilders.EventBuilder()
+                                .setCategory("Acierto") // no pongas cadenas vacias "" que no fufa
+                                .setAction("levantardedo") // no pongas cadenas vacias "" que no fufa
+                                .build());
+                        LayoutInflater inflater = getLayoutInflater();
+                        View layout = inflater.inflate(R.layout.toast_ok,null);
+                        Toast toast = new Toast(getApplicationContext());
+                        toast.setGravity(Gravity.CENTER_VERTICAL, 0, 0);
+                        toast.setDuration(Toast.LENGTH_SHORT);
+                        toast.setView(layout);
+                        toast.show();
+
                         view.setVisibility(View.INVISIBLE);
 
                     }
                     else {
+                        LayoutInflater inflater = getLayoutInflater();
+                        View layout = inflater.inflate(R.layout.toast_error,null);
+                        Toast toast = new Toast(getApplicationContext());
+                        toast.setGravity(Gravity.CENTER_VERTICAL, 0, 0);
+                        toast.setDuration(Toast.LENGTH_SHORT);
+                        toast.setView(layout);
+                        toast.show();
+
                         view.setX(posiciones_elementos.get(view.getId()).x);
                         view.setY(posiciones_elementos.get(view.getId()).y);
                     }

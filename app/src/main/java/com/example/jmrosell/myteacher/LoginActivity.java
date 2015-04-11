@@ -63,6 +63,7 @@ public class LoginActivity extends ActionBarActivity implements LoaderCallbacks<
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        GAHelper analytics = new GAHelper(this);
 
         mToolbar = (Toolbar) findViewById(R.id.toolbar_login);
 
