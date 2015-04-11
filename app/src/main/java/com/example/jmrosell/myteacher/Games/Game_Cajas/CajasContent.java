@@ -28,5 +28,26 @@ public class CajasContent {
         caja.add("Ava");
         caja.add("Haba");
         cajasList.add(caja);
+
+        caja = new ArrayList<>();
+        caja.add("Jugué");
+        caja.add("Juge");
+        caja.add("Jugüe");
+        caja.add("Jugué");
+        cajasList.add(caja);
+
+        caja = new ArrayList<>();
+        caja.add("Abia");
+        caja.add("Habia");
+        caja.add("Havia");
+        caja.add("Habia");
+        cajasList.add(caja);
+
+        caja = new ArrayList<>();
+        caja.add("Girafa");
+        caja.add("Guirafa");
+        caja.add("Jirafa");
+        caja.add("Jirafa");
+        cajasList.add(caja);
     }
 }
