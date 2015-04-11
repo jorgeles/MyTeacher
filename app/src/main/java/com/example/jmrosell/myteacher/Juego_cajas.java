@@ -8,11 +8,6 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
-<<<<<<< HEAD
-=======
-import android.graphics.drawable.ShapeDrawable;
-import android.os.Build;
->>>>>>> 30f020a16ac2982a2ca5c606ea0f74c2497458ad
 import android.os.Handler;
 import android.support.v4.app.NavUtils;
 import android.support.v7.app.ActionBarActivity;
