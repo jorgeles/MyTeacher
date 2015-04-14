@@ -30,6 +30,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.google.android.gms.analytics.HitBuilders;
+import com.google.android.gms.analytics.Tracker;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -63,7 +66,16 @@ public class LoginActivity extends ActionBarActivity implements LoaderCallbacks<
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        new GAHelper(this);
+        // Get tracker.
+        Tracker t = ((Analytics) this.getApplication()).getTracker(
+                Analytics.TrackerName.APP_TRACKER);
+
+        // Set screen name.
+        // Where path is a String representing the screen name.
+        t.setScreenName("Inicio");
+
+        // Send a screen view.
+        t.send(new HitBuilders.AppViewBuilder().build());
 
         mToolbar = (Toolbar) findViewById(R.id.toolbar_login);
 
