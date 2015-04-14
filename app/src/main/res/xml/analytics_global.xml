@@ -3,7 +3,7 @@
     tools:ignore="TypographyDashes">
 
     <string name="ga_logLevel">verbose</string>
-    <integer name="ga_dispatchPeriod">30</integer>
+    <integer name="ga_dispatchPeriod">10</integer>
     <bool name="ga_dryRun">false</bool>
 
 </resources>

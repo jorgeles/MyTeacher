@@ -3,7 +3,7 @@
     tools:ignore="TypographyDashes">
 
     <!--  The following value should be replaced with correct property id. -->
-    <string name="ga_trackingId">UA-61668251-1></string>
+    <string name="ga_trackingId">UA-61668251-2></string>
 
     <integer name="ga_sessionTimeout">180</integer> <!-- 180 = 3 min -->
 
