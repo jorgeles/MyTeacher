@@ -22,6 +22,7 @@ import com.example.jmrosell.myteacher.Games.Game_Asociacion.Destino_Asociacion;
 import com.example.jmrosell.myteacher.Games.Game_Asociacion.Elemento_Asociacion;
 import com.example.jmrosell.myteacher.Games.Posicion_Pantalla;
 import com.google.android.gms.analytics.HitBuilders;
+import com.google.android.gms.analytics.Tracker;
 
 import java.util.Enumeration;
 import java.util.Hashtable;
@@ -134,6 +135,15 @@ public class Reproductor_Asociacion extends ActionBarActivity implements View.On
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_reproductor__asociacion, menu);
+        Tracker t = ((Analytics) this.getApplication()).getTracker(
+                Analytics.TrackerName.APP_TRACKER);
+
+        // Set screen name.
+        // Where path is a String representing the screen name.
+        t.setScreenName("Reproductor Asociacion");
+
+        // Send a screen view.
+        t.send(new HitBuilders.AppViewBuilder().build());
         return true;
     }
 
@@ -182,10 +192,7 @@ public class Reproductor_Asociacion extends ActionBarActivity implements View.On
                     //Al levantar el dedo si esta sobre el destino lo ponemos invisible
                     // si no lo llevamos a su lugar de origen
                     if(X>=destino_x-10&&X<=destino_x+240&&Y>=destino_y+80&&Y<=destino_y+240){
-                        GAHelper.tracker.send(new HitBuilders.EventBuilder()
-                                .setCategory("Acierto") // no pongas cadenas vacias "" que no fufa
-                                .setAction("levantardedo") // no pongas cadenas vacias "" que no fufa
-                                .build());
+
                         LayoutInflater inflater = getLayoutInflater();
                         View layout = inflater.inflate(R.layout.toast_ok,null);
                         Toast toast = new Toast(getApplicationContext());
