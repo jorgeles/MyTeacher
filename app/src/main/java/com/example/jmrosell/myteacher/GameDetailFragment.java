@@ -11,6 +11,8 @@ import android.widget.TextView;
 
 import com.example.jmrosell.myteacher.Games.Game;
 import com.example.jmrosell.myteacher.Games.GameContent;
+import com.google.android.gms.analytics.HitBuilders;
+import com.google.android.gms.analytics.Tracker;
 
 /**
  * A fragment representing a single Game detail screen.
@@ -70,6 +72,17 @@ public class GameDetailFragment extends Fragment {
                         @Override
                         public void onClick(View view) {
                             Intent asociacion_item = new Intent(getActivity(), Reproductor_Asociacion.class);
+
+                            // Get tracker.
+                            Tracker t = ((Analytics) getActivity().getApplication()).getTracker(
+                                    Analytics.TrackerName.APP_TRACKER);
+                            // Build and send an Event.
+                            t.send(new HitBuilders.EventBuilder()
+                                    .setCategory("Reproducir")
+                                    .setAction("Asociacion")
+                                    .setLabel(String.valueOf(view.getId()))
+                                    .build());
+
                             startActivity(asociacion_item);
                         }
                     });
@@ -80,6 +93,17 @@ public class GameDetailFragment extends Fragment {
                         @Override
                         public void onClick(View view) {
                             Intent segundo_item = new Intent(getActivity(), Juego_cajas.class);
+
+                            // Get tracker.
+                            Tracker t = ((Analytics) getActivity().getApplication()).getTracker(
+                                    Analytics.TrackerName.APP_TRACKER);
+                            // Build and send an Event.
+                            t.send(new HitBuilders.EventBuilder()
+                                    .setCategory("Reproducir")
+                                    .setAction("Cajas")
+                                    .setLabel(String.valueOf(view.getId()))
+                                    .build());
+
                             startActivity(segundo_item);
                         }
                     });

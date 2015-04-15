@@ -16,6 +16,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.google.android.gms.analytics.HitBuilders;
+import com.google.android.gms.analytics.Tracker;
+
 import java.util.ArrayList;
 
 
@@ -35,6 +38,17 @@ public class GameDetailActivity extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        Tracker t = ((Analytics) this.getApplication()).getTracker(
+                Analytics.TrackerName.APP_TRACKER);
+
+        // Set screen name.
+        // Where path is a String representing the screen name.
+        t.setScreenName("GameDetailActivity");
+
+        // Send a screen view.
+        t.send(new HitBuilders.AppViewBuilder().build());
+
         setContentView(R.layout.activity_game_detail);
 
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
