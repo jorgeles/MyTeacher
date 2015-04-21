@@ -67,7 +67,6 @@ public class AsociacionDetailFragment extends Fragment implements View.OnClickLi
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.asociacion_game_detail, container, false);
 
-
         // Show the dummy content as text in a TextView.
         /*if (mItem != null) {
             ((TextView) rootView.findViewById(R.id.game_detail)).setText(mItem.content);

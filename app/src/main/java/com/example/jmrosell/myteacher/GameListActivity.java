@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.jmrosell.myteacher.Games.Game_Asociacion.AsociacionDetailActivity;
 import com.example.jmrosell.myteacher.Games.Game_Asociacion.AsociacionDetailFragment;
 import com.google.android.gms.analytics.HitBuilders;
 import com.google.android.gms.analytics.Tracker;
@@ -164,9 +165,16 @@ public class GameListActivity extends ActionBarActivity
         } else {
             // In single-pane mode, simply start the detail activity
             // for the selected item ID.
-            Intent detailIntent = new Intent(this, GameDetailActivity.class);
-            detailIntent.putExtra(GameDetailFragment.ARG_ITEM_ID, id);
-            startActivity(detailIntent);
+            if(id.equals("0")){
+                System.out.println("HOLAAA");
+                this.asociacionDetailFragPort(id);
+            }
+            else{
+                Intent detailIntent = new Intent(this, GameDetailActivity.class);
+                detailIntent.putExtra(GameDetailFragment.ARG_ITEM_ID, id);
+                startActivity(detailIntent);
+            }
+
         }
     }
 
@@ -316,6 +324,12 @@ public class GameListActivity extends ActionBarActivity
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.game_detail_container, fragment)
                 .commit();
+    }
+    public void asociacionDetailFragPort(String id){
+        System.out.println("POOOOO");
+        Intent detailIntent = new Intent(this,AsociacionDetailActivity.class);
+        detailIntent.putExtra(AsociacionDetailFragment.ARG_ITEM_ID, id);
+        startActivity(detailIntent);
     }
 
     public void elementDetailFrag(String id){
