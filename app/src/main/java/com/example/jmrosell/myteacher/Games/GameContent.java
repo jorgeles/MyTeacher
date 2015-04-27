@@ -28,12 +28,5 @@ public class GameContent {
         juego.setDificultad("Media");
         juego.setDescripcion("Otra descripcion");
         gameList.add(juego);
-
-        juego = new Game();
-        juego.setId(3);
-        juego.setNombre("Unir");
-        juego.setDificultad("Dificil");
-        juego.setDescripcion("Otra otra descripcion");
-        gameList.add(juego);
     }
 }

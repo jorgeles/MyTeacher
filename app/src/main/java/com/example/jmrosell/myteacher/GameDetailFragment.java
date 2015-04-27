@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import com.example.jmrosell.myteacher.Games.Game;
@@ -65,28 +66,31 @@ public class GameDetailFragment extends Fragment {
         if (juego != null) {
             switch (juego.getId()) {
                 case 1:
-                    Button asociacion = (Button) rootView.findViewById(R.id.button_detail);
-                    asociacion.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                            Intent asociacion_item = new Intent(getActivity(), Reproductor_Asociacion.class);
-                            startActivity(asociacion_item);
-                        }
-                    });
                     break;
                 case 2:
-                    Button segundo = (Button) rootView.findViewById(R.id.button_detail);
-                    segundo.setOnClickListener(new View.OnClickListener() {
+                    ((TextView) rootView.findViewById(R.id.descripcion)).setText(juego.getDescripcion());
+
+                    ((TextView) rootView.findViewById(R.id.text_detail1)).setText("Tiempo de caida (seg.):");
+                    EditText tiempo = (EditText) rootView.findViewById(R.id.editText_detail1);
+
+                    ((TextView) rootView.findViewById(R.id.text_detail2)).setText("Número de Tiradas:");
+                    EditText tiradas = (EditText) rootView.findViewById(R.id.editText_detail2);
+
+                    ((TextView) rootView.findViewById(R.id.text_detail3)).setText("Número de Vidas:");
+                    EditText vidas = (EditText) rootView.findViewById(R.id.editText_detail3);
+
+                    Button cajas = (Button) rootView.findViewById(R.id.button_detail);
+                    cajas.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
-                            Intent segundo_item = new Intent(getActivity(), Juego_cajas.class);
-                            startActivity(segundo_item);
+                            Intent cajas_item = new Intent(getActivity(), Juego_cajas.class);
+                            startActivity(cajas_item);
                         }
                     });
                     break;
             }
-            ((TextView) rootView.findViewById(R.id.textViewNombre)).setText(juego.getNombre());
-            ((TextView) rootView.findViewById(R.id.textViewDificultad)).setText(juego.getDificultad());
+            //((TextView) rootView.findViewById(R.id.textViewNombre)).setText(juego.getNombre());
+            //((TextView) rootView.findViewById(R.id.textViewDificultad)).setText(juego.getDificultad());
         }
 
         return rootView;

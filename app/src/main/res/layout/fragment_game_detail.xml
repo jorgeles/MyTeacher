@@ -1,42 +1,113 @@
 <ScrollView
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/scrollView">
 
     <LinearLayout
         android:orientation="vertical"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent">
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Nombre:"
-            android:id="@+id/NombreLabel" />
+            android:text="Descripcion"
+            android:layout_margin="10dp"
+            android:textSize="24dp"
+            android:id="@+id/descripcion"/>
 
-        <TextView
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/textViewNombre"
-            android:text="textViewName" />
+            android:layout_marginTop="60dp">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Dificultad:"
-            android:id="@+id/DificultadLabel" />
+            <TextView
+                android:gravity="center_horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:textSize="24dp"
+                android:id="@+id/text_detail1"
+                android:layout_marginLeft="40dp"/>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="textViewDificultad"
-            android:id="@+id/textViewDificultad" />
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:width="150dp"
+                android:textColor="@color/toolbar_background"
+                android:id="@+id/editText_detail1"
+                android:layout_marginLeft="40dp"/>
 
-        <Button
-            android:layout_width="wrap_content"
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="New Button"
-            android:id="@+id/button_detail" />
+            android:layout_marginTop="60dp">
+
+            <TextView
+                android:gravity="center_horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Número de Tiradas:"
+                android:textStyle="bold"
+                android:textSize="24dp"
+                android:id="@+id/text_detail2"
+                android:layout_marginLeft="40dp"/>
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:width="150dp"
+                android:textColor="@color/toolbar_background"
+                android:id="@+id/editText_detail2"
+                android:layout_marginLeft="40dp"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="60dp">
+
+            <TextView
+                android:gravity="center_horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Número de Vidas:"
+                android:textStyle="bold"
+                android:textSize="24dp"
+                android:id="@+id/text_detail3"
+                android:layout_marginLeft="40dp"/>
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:width="150dp"
+                android:textColor="@color/toolbar_background"
+                android:id="@+id/editText_detail3"
+                android:layout_marginLeft="40dp"/>
+        </LinearLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <Button
+                android:layout_alignParentBottom="true"
+                android:layout_centerInParent="true"
+                android:textStyle="bold"
+                android:background="@color/toolbar_background"
+                android:textSize="24dp"
+                android:layout_width="350dp"
+                style="?android:textAppearanceSmall"
+                android:textColor="@color/blanco"
+                android:layout_height="wrap_content"
+                android:text="@string/Reproducir"
+                android:id="@+id/button_detail"
+                android:layout_marginTop="100dp"/>
+        </RelativeLayout>
     </LinearLayout>
 </ScrollView>
