@@ -10,10 +10,13 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 
+import com.example.jmrosell.myteacher.Analytics;
 import com.example.jmrosell.myteacher.Games.Game;
 import com.example.jmrosell.myteacher.Games.GameContent;
 import com.example.jmrosell.myteacher.R;
 import com.example.jmrosell.myteacher.Reproductor_Asociacion;
+import com.google.android.gms.analytics.HitBuilders;
+import com.google.android.gms.analytics.Tracker;
 
 import java.util.Enumeration;
 
@@ -63,7 +66,6 @@ public class AsociacionDetailFragment extends Fragment implements View.OnClickLi
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.asociacion_game_detail, container, false);
-
 
         // Show the dummy content as text in a TextView.
         /*if (mItem != null) {
@@ -123,6 +125,16 @@ public class AsociacionDetailFragment extends Fragment implements View.OnClickLi
             startActivity(asociacion_item);
         }
         else{
+
+            // Get tracker.
+            Tracker t = ((Analytics) getActivity().getApplication()).getTracker(
+                    Analytics.TrackerName.APP_TRACKER);
+            // Build and send an Event.
+            t.send(new HitBuilders.EventBuilder()
+                    .setCategory("Detalles Asocacion")
+                    .setAction("Fragment detalles elementos y destinos")
+                    .setLabel(String.valueOf(v.getId()))
+                    .build());
 
             Bundle arguments = new Bundle();
             arguments.putString(AsociacionDetailFragment.ARG_ITEM_ID, String.valueOf(index));

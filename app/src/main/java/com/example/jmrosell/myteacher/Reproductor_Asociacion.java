@@ -22,6 +22,7 @@ import com.example.jmrosell.myteacher.Games.Game_Asociacion.Destino_Asociacion;
 import com.example.jmrosell.myteacher.Games.Game_Asociacion.Elemento_Asociacion;
 import com.example.jmrosell.myteacher.Games.Posicion_Pantalla;
 import com.google.android.gms.analytics.HitBuilders;
+import com.google.android.gms.analytics.Tracker;
 
 import java.util.Enumeration;
 import java.util.Hashtable;
@@ -47,6 +48,16 @@ public class Reproductor_Asociacion extends ActionBarActivity implements View.On
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reproductor_asociacion);
+
+        Tracker t = ((Analytics) this.getApplication()).getTracker(
+                Analytics.TrackerName.APP_TRACKER);
+
+        // Set screen name.
+        // Where path is a String representing the screen name.
+        t.setScreenName("Reproductor Asociacion");
+
+        // Send a screen view.
+        t.send(new HitBuilders.AppViewBuilder().build());
 
         mToolbar = (Toolbar) findViewById(R.id.toolbar_asociacion);
 
@@ -134,6 +145,7 @@ public class Reproductor_Asociacion extends ActionBarActivity implements View.On
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_reproductor__asociacion, menu);
+
         return true;
     }
 
@@ -164,9 +176,10 @@ public class Reproductor_Asociacion extends ActionBarActivity implements View.On
 
             //indico quien es el destino del elemento que se ha seleccionado
             int id_destino = contenido.elementos.get(view.getId()).destino.id;
-            System.out.println(id_destino);
             int destino_x = posiciones_destinos.get(id_destino).x;
             int destino_y = posiciones_destinos.get(id_destino).y;
+
+            Tracker t;
 
             //Dependiendo de la accion recogida..
             switch (event.getAction() & MotionEvent.ACTION_MASK) {
@@ -175,6 +188,17 @@ public class Reproductor_Asociacion extends ActionBarActivity implements View.On
                     //Recogemos los parametros de la imagen que hemo tocado
                     RelativeLayout.LayoutParams Params =
                             (RelativeLayout.LayoutParams) view.getLayoutParams();
+
+                    // Get tracker.
+                    t = ((Analytics) this.getApplication()).getTracker(
+                            Analytics.TrackerName.APP_TRACKER);
+                    // Build and send an Event.
+                    t.send(new HitBuilders.EventBuilder()
+                            .setCategory("Asociacion")
+                            .setAction("Selecciona Objeto")
+                            .setLabel(String.valueOf(view.getId()))
+                            .build());
+
                     xDelta = X - Params.leftMargin;
                     yDelta = Y - Params.topMargin;
                     break;
@@ -182,10 +206,7 @@ public class Reproductor_Asociacion extends ActionBarActivity implements View.On
                     //Al levantar el dedo si esta sobre el destino lo ponemos invisible
                     // si no lo llevamos a su lugar de origen
                     if(X>=destino_x-10&&X<=destino_x+240&&Y>=destino_y+80&&Y<=destino_y+240){
-                        GAHelper.tracker.send(new HitBuilders.EventBuilder()
-                                .setCategory("Acierto") // no pongas cadenas vacias "" que no fufa
-                                .setAction("levantardedo") // no pongas cadenas vacias "" que no fufa
-                                .build());
+
                         LayoutInflater inflater = getLayoutInflater();
                         View layout = inflater.inflate(R.layout.toast_ok,null);
                         Toast toast = new Toast(getApplicationContext());
@@ -193,6 +214,16 @@ public class Reproductor_Asociacion extends ActionBarActivity implements View.On
                         toast.setDuration(Toast.LENGTH_SHORT);
                         toast.setView(layout);
                         toast.show();
+
+                        // Get tracker.
+                        t = ((Analytics) this.getApplication()).getTracker(
+                                Analytics.TrackerName.APP_TRACKER);
+                        // Build and send an Event.
+                        t.send(new HitBuilders.EventBuilder()
+                                .setCategory("Asociacion")
+                                .setAction("Acierto")
+                                .setLabel(String.valueOf(view.getId()))
+                                .build());
 
                         view.setVisibility(View.INVISIBLE);
 
@@ -205,6 +236,16 @@ public class Reproductor_Asociacion extends ActionBarActivity implements View.On
                         toast.setDuration(Toast.LENGTH_SHORT);
                         toast.setView(layout);
                         toast.show();
+
+                        // Get tracker.
+                        t = ((Analytics) this.getApplication()).getTracker(
+                                Analytics.TrackerName.APP_TRACKER);
+                        // Build and send an Event.
+                        t.send(new HitBuilders.EventBuilder()
+                                .setCategory("Asociacion")
+                                .setAction("Fallo")
+                                .setLabel(String.valueOf(view.getId()))
+                                .build());
 
                         view.setX(posiciones_elementos.get(view.getId()).x);
                         view.setY(posiciones_elementos.get(view.getId()).y);
@@ -227,6 +268,17 @@ public class Reproductor_Asociacion extends ActionBarActivity implements View.On
                     //le añadimos los nuevos
                     //parametros para mover la imagen
                     view.setLayoutParams(layoutParams);
+
+                    // Get tracker.
+                    t = ((Analytics) this.getApplication()).getTracker(
+                            Analytics.TrackerName.APP_TRACKER);
+                    // Build and send an Event.
+                    t.send(new HitBuilders.EventBuilder()
+                            .setCategory("Asociacion")
+                            .setAction("Mueve Objeto")
+                            .setLabel(String.valueOf(view.getId()))
+                            .build());
+
                     break;
             }
 

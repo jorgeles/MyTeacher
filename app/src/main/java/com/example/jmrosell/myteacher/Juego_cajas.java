@@ -29,6 +29,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.jmrosell.myteacher.Games.Game_Cajas.CajasContent;
+import com.google.android.gms.analytics.HitBuilders;
+import com.google.android.gms.analytics.Tracker;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -56,6 +58,17 @@ public class Juego_cajas extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        Tracker t = ((Analytics) this.getApplication()).getTracker(
+                Analytics.TrackerName.APP_TRACKER);
+
+        // Set screen name.
+        // Where path is a String representing the screen name.
+        t.setScreenName("Juego Cajas");
+
+        // Send a screen view.
+        t.send(new HitBuilders.AppViewBuilder().build());
+
         setContentView(R.layout.activity_juego_cajas);
 
         //Cargamos las palabras

@@ -12,6 +12,8 @@ import android.widget.TextView;
 
 import com.example.jmrosell.myteacher.Games.Game;
 import com.example.jmrosell.myteacher.Games.GameContent;
+import com.google.android.gms.analytics.HitBuilders;
+import com.google.android.gms.analytics.Tracker;
 
 /**
  * A fragment representing a single Game detail screen.
@@ -66,6 +68,25 @@ public class GameDetailFragment extends Fragment {
         if (juego != null) {
             switch (juego.getId()) {
                 case 1:
+                    Button asociacion = (Button) rootView.findViewById(R.id.button_detail);
+                    asociacion.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            Intent asociacion_item = new Intent(getActivity(), Reproductor_Asociacion.class);
+
+                            // Get tracker.
+                            Tracker t = ((Analytics) getActivity().getApplication()).getTracker(
+                                    Analytics.TrackerName.APP_TRACKER);
+                            // Build and send an Event.
+                            t.send(new HitBuilders.EventBuilder()
+                                    .setCategory("Reproducir")
+                                    .setAction("Asociacion")
+                                    .setLabel(String.valueOf(view.getId()))
+                                    .build());
+
+                            startActivity(asociacion_item);
+                        }
+                    });
                     break;
                 case 2:
                     ((TextView) rootView.findViewById(R.id.descripcion)).setText(juego.getDescripcion());
@@ -85,6 +106,19 @@ public class GameDetailFragment extends Fragment {
                         public void onClick(View view) {
                             Intent cajas_item = new Intent(getActivity(), Juego_cajas.class);
                             startActivity(cajas_item);
+                            Intent segundo_item = new Intent(getActivity(), Juego_cajas.class);
+
+                            // Get tracker.
+                            Tracker t = ((Analytics) getActivity().getApplication()).getTracker(
+                                    Analytics.TrackerName.APP_TRACKER);
+                            // Build and send an Event.
+                            t.send(new HitBuilders.EventBuilder()
+                                    .setCategory("Reproducir")
+                                    .setAction("Cajas")
+                                    .setLabel(String.valueOf(view.getId()))
+                                    .build());
+
+                            startActivity(segundo_item);
                         }
                     });
                     break;
