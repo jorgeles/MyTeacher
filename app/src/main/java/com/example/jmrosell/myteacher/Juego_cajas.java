@@ -42,6 +42,7 @@ public class Juego_cajas extends ActionBarActivity {
 
     private RelativeLayout layout;
     private TextView TxtViewVidas;
+    private TextView TxtViewTiradas;
     private TextView text1;
     private TextView text2;
     private TextView text3;
@@ -52,7 +53,9 @@ public class Juego_cajas extends ActionBarActivity {
     private int textColor;
     private AnimatorSet anim;
     private boolean click = false;
-    private int vidas = 3;
+    private int vidas;
+    private int tiradas;
+    private int segundos;
     private int palabra_id;
 
     @Override
@@ -63,10 +66,16 @@ public class Juego_cajas extends ActionBarActivity {
                 Analytics.TrackerName.APP_TRACKER);
 
         Bundle bundle = getIntent().getExtras();
+        vidas = bundle.getInt("Vidas");
+        tiradas = bundle.getInt("Tiradas");
+        if(bundle.getInt("Tiempo")==0){ //Facil
+            segundos = 10;
+        }else if(bundle.getInt("Tiempo")==1){ //Medio
+            segundos = 7;
+        }else{ //Dificil
+            segundos = 4;
+        }
 
-        Log.i("--Tag",String.valueOf(bundle.getInt("Tiempo")));
-        Log.i("--Tag",String.valueOf(bundle.getInt("Vidas")));
-        Log.i("--Tag",String.valueOf(bundle.getInt("Tiradas")));
         // Set screen name.
         // Where path is a String representing the screen name.
         t.setScreenName("Juego Cajas");
@@ -93,6 +102,7 @@ public class Juego_cajas extends ActionBarActivity {
 
         layout = (RelativeLayout) findViewById(R.id.contenedor_cajas);
         TxtViewVidas = (TextView) findViewById(R.id.vidas);
+        TxtViewTiradas = (TextView) findViewById(R.id.tiradas);
         text1 = (TextView) findViewById(R.id.text1);
         text1.setBackgroundResource(R.drawable.border_textview);
         text1.setText(palabras.get(palabra_id).get(0));
@@ -110,6 +120,7 @@ public class Juego_cajas extends ActionBarActivity {
 
         textColor = text3.getCurrentTextColor();
         TxtViewVidas.setText(""+vidas);
+        TxtViewTiradas.setText(""+tiradas);
 
         // Dimensiones de la pantalla
         DisplayMetrics metrics = new DisplayMetrics();
@@ -118,7 +129,7 @@ public class Juego_cajas extends ActionBarActivity {
 
         anim = new AnimatorSet();
         anim.play(ObjectAnimator.ofFloat(layout, "translationY", 0, height - 180));
-        anim.setDuration(5000);
+        anim.setDuration(segundos*1000);
         anim.addListener(new AnimatorListenerAdapter() {
             @Override
             public void onAnimationStart(Animator animation){
@@ -156,12 +167,13 @@ public class Juego_cajas extends ActionBarActivity {
                     text2.setTextColor(getResources().getColor(R.color.blanco));
                     text3.setTextColor(getResources().getColor(R.color.blanco));
                     vidas--;
+                    tiradas--;
                 }
 
-                //Actualizamos las vidas por si hubiese perdido alguna
+                //Actualizamos las vidas por si hubiese perdido alguna y las tiradas
                 TxtViewVidas.setText(""+vidas);
-
-                if(vidas>0) {
+                TxtViewTiradas.setText(""+tiradas);
+                if(vidas>0 && tiradas>0) {
                     // Execute some code after 2 seconds have passed
                     Handler handler = new Handler();
                     handler.postDelayed(new Runnable() {
@@ -169,9 +181,12 @@ public class Juego_cajas extends ActionBarActivity {
                             anim.start();
                         }
                     }, 2000);
-                }else{
+                }else if(vidas==0){
                     TxtViewVidas.setText(""+vidas);
                     Toast.makeText(Juego_cajas.this,"You lost",Toast.LENGTH_SHORT).show();
+                }else if(tiradas==0){
+                    TxtViewTiradas.setText(""+tiradas);
+                    Toast.makeText(Juego_cajas.this,"Bravo",Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -187,6 +202,7 @@ public class Juego_cajas extends ActionBarActivity {
                     vidas--;
                     shape.setColorFilter(Color.parseColor("#FA5858"), android.graphics.PorterDuff.Mode.SRC);
                 }
+                tiradas--;
                 text1.setTextColor(getResources().getColor(R.color.blanco));
                 click = true;
                 anim.end();
@@ -202,6 +218,7 @@ public class Juego_cajas extends ActionBarActivity {
                     vidas--;
                     shape_text2.setColorFilter(Color.parseColor("#FA5858"), android.graphics.PorterDuff.Mode.SRC);
                 }
+                tiradas--;
                 text2.setTextColor(getResources().getColor(R.color.blanco));
                 click = true;
                 anim.end();
@@ -217,6 +234,7 @@ public class Juego_cajas extends ActionBarActivity {
                     vidas--;
                     shape_text3.setColorFilter(Color.parseColor("#FA5858"), android.graphics.PorterDuff.Mode.SRC);
                 }
+                tiradas--;
                 text3.setTextColor(getResources().getColor(R.color.blanco));
                 click = true;
                 anim.end();
