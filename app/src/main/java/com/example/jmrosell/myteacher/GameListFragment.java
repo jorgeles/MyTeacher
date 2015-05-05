@@ -72,11 +72,13 @@ public class GameListFragment extends ListFragment {
     public GameListFragment() {
     }
 
-    private SimpleAdapter sa;
+    //private SimpleAdapter sa;
+    private CustomListAdapter sa;
     ArrayList<HashMap<String,String>> list = new ArrayList<HashMap<String,String>>();
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
+        System.out.println("SAAAA");
         super.onCreate(savedInstanceState);
         HashMap<String,String> item;
 
@@ -96,6 +98,7 @@ public class GameListFragment extends ListFragment {
                 android.R.layout.simple_list_item_1,
                 android.R.id.text1,
                 GameContent.getGameList()));*/
+
         ArrayList<Game> games = new ArrayList<>();
         games = GameContent.getGameList();
         for(int i=0;i<games.size();i++){
@@ -109,10 +112,12 @@ public class GameListFragment extends ListFragment {
             }
             list.add( item );
         }
-        sa = new SimpleAdapter(getActivity(), list,
+       /* sa = new SimpleAdapter(getActivity(), list,
                 android.R.layout.two_line_list_item ,
                 new String[] { "line1","line2" },
-                new int[] {android.R.id.text1, android.R.id.text2});
+                new int[] {android.R.id.text1, android.R.id.text2});*/
+        sa = new CustomListAdapter(getActivity(),games);
+        System.out.println("Pos parece que hace algo");
         setListAdapter( sa );
 
     }
