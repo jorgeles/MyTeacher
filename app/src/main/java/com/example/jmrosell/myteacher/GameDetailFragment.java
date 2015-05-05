@@ -3,6 +3,8 @@ package com.example.jmrosell.myteacher;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +14,7 @@ import android.widget.TextView;
 
 import com.example.jmrosell.myteacher.Games.Game;
 import com.example.jmrosell.myteacher.Games.GameContent;
+import com.example.jmrosell.myteacher.Games.Game_Cajas.JuegoCajasFragment;
 import com.google.android.gms.analytics.HitBuilders;
 import com.google.android.gms.analytics.Tracker;
 
@@ -89,38 +92,13 @@ public class GameDetailFragment extends Fragment {
                     });
                     break;
                 case 2:
-                    ((TextView) rootView.findViewById(R.id.descripcion)).setText(juego.getDescripcion());
+                    FragmentManager fragmentManager = getFragmentManager();
+                    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 
-                    ((TextView) rootView.findViewById(R.id.text_detail1)).setText("Tiempo de caida (seg.):");
-                    EditText tiempo = (EditText) rootView.findViewById(R.id.editText_detail1);
-
-                    ((TextView) rootView.findViewById(R.id.text_detail2)).setText("Número de Tiradas:");
-                    EditText tiradas = (EditText) rootView.findViewById(R.id.editText_detail2);
-
-                    ((TextView) rootView.findViewById(R.id.text_detail3)).setText("Número de Vidas:");
-                    EditText vidas = (EditText) rootView.findViewById(R.id.editText_detail3);
-
-                    Button cajas = (Button) rootView.findViewById(R.id.button_detail);
-                    cajas.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                            Intent cajas_item = new Intent(getActivity(), Juego_cajas.class);
-                            startActivity(cajas_item);
-                            Intent segundo_item = new Intent(getActivity(), Juego_cajas.class);
-
-                            // Get tracker.
-                            Tracker t = ((Analytics) getActivity().getApplication()).getTracker(
-                                    Analytics.TrackerName.APP_TRACKER);
-                            // Build and send an Event.
-                            t.send(new HitBuilders.EventBuilder()
-                                    .setCategory("Reproducir")
-                                    .setAction("Cajas")
-                                    .setLabel(String.valueOf(view.getId()))
-                                    .build());
-
-                            startActivity(segundo_item);
-                        }
-                    });
+                    //add a fragment
+                    JuegoCajasFragment cajas = new JuegoCajasFragment();
+                    fragmentTransaction.add(R.id.detail_game, cajas);
+                    fragmentTransaction.commit();
                     break;
             }
             //((TextView) rootView.findViewById(R.id.textViewNombre)).setText(juego.getNombre());

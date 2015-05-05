@@ -62,6 +62,11 @@ public class Juego_cajas extends ActionBarActivity {
         Tracker t = ((Analytics) this.getApplication()).getTracker(
                 Analytics.TrackerName.APP_TRACKER);
 
+        Bundle bundle = getIntent().getExtras();
+
+        Log.i("--Tag",String.valueOf(bundle.getInt("Tiempo")));
+        Log.i("--Tag",String.valueOf(bundle.getInt("Vidas")));
+        Log.i("--Tag",String.valueOf(bundle.getInt("Tiradas")));
         // Set screen name.
         // Where path is a String representing the screen name.
         t.setScreenName("Juego Cajas");

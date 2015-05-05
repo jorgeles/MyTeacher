@@ -63,7 +63,7 @@
                 </RelativeLayout>
             </LinearLayout>
 
-            <LinearLayout
+            <RelativeLayout
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="match_parent"
@@ -82,11 +82,30 @@
                     android:layout_width="100dp"
                     android:layout_height="80dp"
                     android:id="@+id/vidas"
+                    android:layout_marginLeft="30dp"
                     android:textSize="24dp"
                     android:gravity="center"
                     android:layout_toRightOf="@+id/vidas_label"/>
 
-            </LinearLayout>
+                <TextView
+                    android:layout_width="100dp"
+                    android:layout_height="80dp"
+                    android:text="Tiradas: "
+                    android:textSize="24dp"
+                    android:layout_marginTop="50dp"
+                    android:id="@+id/tiradas_label"
+                    android:gravity="center"
+                    android:textStyle="bold"/>
+                <TextView
+                    android:layout_width="100dp"
+                    android:layout_height="80dp"
+                    android:layout_marginTop="50dp"
+                    android:layout_marginLeft="30dp"
+                    android:id="@+id/tiradas"
+                    android:textSize="24dp"
+                    android:gravity="center"
+                    android:layout_toRightOf="@+id/tiradas_label"/>
+            </RelativeLayout>
         </LinearLayout>
     </RelativeLayout>
 </FrameLayout>

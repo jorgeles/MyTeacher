@@ -31,4 +31,10 @@
     <string name="title_activity_juego_cajas">Juego_cajas</string>
 
     <string name="title_activity_asociacion_detail">AsociacionDetailActivity</string>
+
+    <string-array name="dificultad">
+        <item>Fácil</item>
+        <item>Medio</item>
+        <item>Dificil</item>
+    </string-array>
 </resources>
