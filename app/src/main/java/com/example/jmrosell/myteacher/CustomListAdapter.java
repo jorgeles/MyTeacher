@@ -23,6 +23,7 @@ public class CustomListAdapter extends BaseAdapter {
         this.listData = listData;
         layoutInflater = LayoutInflater.from(aContext);
     }
+
     @Override
     public int getCount() {
         return listData.size();
@@ -44,18 +45,15 @@ public class CustomListAdapter extends BaseAdapter {
         TextView texto2 = null;
         ImageView imagen = null;
         System.out.println("Hola");
-        if (convertView == null) {
-            convertView = layoutInflater.inflate(R.layout.list_row_layout, null);
-            texto1 = (TextView) convertView.findViewById(R.id.texto1);
-            texto2 = (TextView) convertView.findViewById(R.id.texto2);
-            imagen = (ImageView) convertView.findViewById(R.id.imagen);
-            //convertView.setTag(holder);
-        } else {
-            //holder = (ViewHolder) convertView.getTag();
-        }
+        convertView = layoutInflater.inflate(R.layout.list_row_layout, null);
+        texto1 = (TextView) convertView.findViewById(R.id.texto1);
+        texto2 = (TextView) convertView.findViewById(R.id.texto2);
+        imagen = (ImageView) convertView.findViewById(R.id.imagen);
+
+
         texto1.setText(listData.get(position).getNombre());
-        texto2.setText("By, " + listData.get(position).getDescripcion());
-        //imagen.setImageAlpha(R.drawable.background);
+        texto2.setText(listData.get(position).getDescripcion());
+        imagen.setImageResource(R.drawable.background);
         return convertView;
     }
 }
