@@ -16,13 +16,13 @@
         android:id="@+id/texto2"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:layout_toRightOf="@id/imagen"
         android:ellipsize="marquee"
         android:singleLine="true"
         android:text="Description"
-        android:textSize="12sp" />
+        android:textSize="12sp"
+        android:layout_alignBottom="@+id/imagen"
+        android:layout_alignLeft="@+id/texto1"
+        android:layout_alignStart="@+id/texto1" />
 
     <TextView
         android:id="@+id/texto1"
