@@ -33,12 +33,12 @@ public class JuegoCajasFragment extends Fragment {
                 if(vidas.getText().toString().isEmpty())
                     cajas_item.putExtra("Vidas",3);
                 else
-                    cajas_item.putExtra("Vidas",vidas.getText().toString());
+                    cajas_item.putExtra("Vidas",Integer.parseInt(vidas.getText().toString()));
 
                 if(tiradas.getText().toString().isEmpty())
                     cajas_item.putExtra("Tiradas",5);
                 else
-                    cajas_item.putExtra("Tiradas",tiradas.getText().toString());
+                    cajas_item.putExtra("Tiradas",Integer.parseInt(tiradas.getText().toString()));
                 startActivity(cajas_item);
             }
         });

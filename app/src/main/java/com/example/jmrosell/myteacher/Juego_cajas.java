@@ -129,11 +129,61 @@ public class Juego_cajas extends ActionBarActivity {
 
         anim = new AnimatorSet();
         anim.play(ObjectAnimator.ofFloat(layout, "translationY", 0, height - 180));
-        anim.setDuration(segundos*1000);
+        anim.setDuration(segundos * 1000);
         anim.addListener(new AnimatorListenerAdapter() {
             @Override
-            public void onAnimationStart(Animator animation){
+            public void onAnimationStart(Animator animation) {
                 super.onAnimationStart(animation);
+
+                text1.setOnClickListener(new TextView.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        if (text1.getText().equals(palabras.get(palabra_id).get(3))) { //Acierto
+                            // Para cambiar el color al fondo del drawable
+                            shape.setColorFilter(Color.parseColor("#66BB6A"), android.graphics.PorterDuff.Mode.SRC);
+                        } else { //Fallo
+                            vidas--;
+                            shape.setColorFilter(Color.parseColor("#FA5858"), android.graphics.PorterDuff.Mode.SRC);
+                        }
+                        tiradas--;
+                        text1.setTextColor(getResources().getColor(R.color.blanco));
+                        click = true;
+                        anim.end();
+                    }
+                });
+                text2.setOnClickListener(new TextView.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        if (text2.getText().equals(palabras.get(palabra_id).get(3))) { //Acierto
+                            // Para cambiar el color al fondo del drawable
+                            shape_text2.setColorFilter(Color.parseColor("#66BB6A"), android.graphics.PorterDuff.Mode.SRC);
+                        } else { //Fallo
+                            vidas--;
+                            shape_text2.setColorFilter(Color.parseColor("#FA5858"), android.graphics.PorterDuff.Mode.SRC);
+                        }
+                        tiradas--;
+                        text2.setTextColor(getResources().getColor(R.color.blanco));
+                        click = true;
+                        anim.end();
+                    }
+                });
+                text3.setOnClickListener(new TextView.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        if (text3.getText().equals(palabras.get(palabra_id).get(3))) { //Acierto
+                            // Para cambiar el color al fondo del drawable
+                            shape_text3.setColorFilter(Color.parseColor("#66BB6A"), android.graphics.PorterDuff.Mode.SRC);
+                        } else { //Fallo
+                            vidas--;
+                            shape_text3.setColorFilter(Color.parseColor("#FA5858"), android.graphics.PorterDuff.Mode.SRC);
+                        }
+                        tiradas--;
+                        text3.setTextColor(getResources().getColor(R.color.blanco));
+                        click = true;
+                        anim.end();
+                    }
+                });
+
                 shape.setColorFilter(null);
                 shape_text2.setColorFilter(null);
                 shape_text3.setColorFilter(null);
@@ -141,11 +191,19 @@ public class Juego_cajas extends ActionBarActivity {
                 text1.setTextColor(textColor);
                 text2.setTextColor(textColor);
                 text3.setTextColor(textColor);
+
+                text1.setBackgroundResource(R.drawable.border_textview);
+                text2.setBackgroundResource(R.drawable.border_textview);
+                text3.setBackgroundResource(R.drawable.border_textview);
+                shape = (Drawable) text1.getBackground();
+                shape_text2 = (Drawable) text2.getBackground();
+                shape_text3 = (Drawable) text3.getBackground();
+
                 click = false;
 
                 //cambiamos la palabra
                 int i1 = r.nextInt(palabras.size());
-                while(i1==palabra_id){
+                while (i1 == palabra_id) {
                     i1 = r.nextInt(palabras.size());
                 }
                 palabra_id = i1;
@@ -156,10 +214,16 @@ public class Juego_cajas extends ActionBarActivity {
                 //anim.play(ObjectAnimator.ofFloat(layout, "translationY", 0, height - 180));
                 //anim.setDuration(5000);
             }
+
             @Override
             public void onAnimationEnd(Animator animation) {
                 super.onAnimationEnd(animation);
-                if(!click) {
+
+                text1.setOnClickListener(null);
+                text2.setOnClickListener(null);
+                text3.setOnClickListener(null);
+
+                if (!click) {
                     shape.setColorFilter(Color.parseColor("#FA5858"), PorterDuff.Mode.SRC);
                     shape_text2.setColorFilter(Color.parseColor("#FA5858"), PorterDuff.Mode.SRC);
                     shape_text3.setColorFilter(Color.parseColor("#FA5858"), PorterDuff.Mode.SRC);
@@ -171,9 +235,9 @@ public class Juego_cajas extends ActionBarActivity {
                 }
 
                 //Actualizamos las vidas por si hubiese perdido alguna y las tiradas
-                TxtViewVidas.setText(""+vidas);
-                TxtViewTiradas.setText(""+tiradas);
-                if(vidas>0 && tiradas>0) {
+                TxtViewVidas.setText("" + vidas);
+                TxtViewTiradas.setText("" + tiradas);
+                if (vidas > 0 && tiradas > 0) {
                     // Execute some code after 2 seconds have passed
                     Handler handler = new Handler();
                     handler.postDelayed(new Runnable() {
@@ -181,65 +245,16 @@ public class Juego_cajas extends ActionBarActivity {
                             anim.start();
                         }
                     }, 2000);
-                }else if(vidas==0){
-                    TxtViewVidas.setText(""+vidas);
-                    Toast.makeText(Juego_cajas.this,"You lost",Toast.LENGTH_SHORT).show();
-                }else if(tiradas==0){
-                    TxtViewTiradas.setText(""+tiradas);
-                    Toast.makeText(Juego_cajas.this,"Bravo",Toast.LENGTH_SHORT).show();
+                } else if (vidas == 0) {
+                    TxtViewVidas.setText("" + vidas);
+                    Toast.makeText(Juego_cajas.this, "You lost", Toast.LENGTH_SHORT).show();
+                } else if (tiradas == 0) {
+                    TxtViewTiradas.setText("" + tiradas);
+                    Toast.makeText(Juego_cajas.this, "Bravo", Toast.LENGTH_SHORT).show();
                 }
             }
         });
         anim.start();
-
-        text1.setOnClickListener(new TextView.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(text1.getText().equals(palabras.get(palabra_id).get(3))) { //Acierto
-                    // Para cambiar el color al fondo del drawable
-                    shape.setColorFilter(Color.parseColor("#66BB6A"), android.graphics.PorterDuff.Mode.SRC);
-                }else{ //Fallo
-                    vidas--;
-                    shape.setColorFilter(Color.parseColor("#FA5858"), android.graphics.PorterDuff.Mode.SRC);
-                }
-                tiradas--;
-                text1.setTextColor(getResources().getColor(R.color.blanco));
-                click = true;
-                anim.end();
-            }
-        });
-        text2.setOnClickListener(new TextView.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(text2.getText().equals(palabras.get(palabra_id).get(3))) { //Acierto
-                    // Para cambiar el color al fondo del drawable
-                    shape_text2.setColorFilter(Color.parseColor("#66BB6A"), android.graphics.PorterDuff.Mode.SRC);
-                }else{ //Fallo
-                    vidas--;
-                    shape_text2.setColorFilter(Color.parseColor("#FA5858"), android.graphics.PorterDuff.Mode.SRC);
-                }
-                tiradas--;
-                text2.setTextColor(getResources().getColor(R.color.blanco));
-                click = true;
-                anim.end();
-            }
-        });
-        text3.setOnClickListener(new TextView.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(text3.getText().equals(palabras.get(palabra_id).get(3))) { //Acierto
-                    // Para cambiar el color al fondo del drawable
-                    shape_text3.setColorFilter(Color.parseColor("#66BB6A"), android.graphics.PorterDuff.Mode.SRC);
-                }else{ //Fallo
-                    vidas--;
-                    shape_text3.setColorFilter(Color.parseColor("#FA5858"), android.graphics.PorterDuff.Mode.SRC);
-                }
-                tiradas--;
-                text3.setTextColor(getResources().getColor(R.color.blanco));
-                click = true;
-                anim.end();
-            }
-        });
     }
 
     @Override
