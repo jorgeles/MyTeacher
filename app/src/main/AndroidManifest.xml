@@ -41,12 +41,12 @@
         <activity
             android:name=".Reproductor_Asociacion"
             android:label="@string/title_activity_reproductor__asociacion"
-            android:screenOrientation="landscape">
+            android:screenOrientation="sensorLandscape">
         </activity>
         <activity
             android:name=".Juego_cajas"
             android:label="@string/title_activity_juego_cajas"
-            android:screenOrientation="landscape">
+            android:screenOrientation="sensorLandscape">
         </activity>
         <activity
             android:name=".Games.Game_Asociacion.AsociacionDetailActivity"
